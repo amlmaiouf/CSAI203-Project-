@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Car Washing — Elderly Care</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    body { font-family: 'Open Sans', sans-serif; background-color: #f8f9fa; }
+    .header-section { background-image: url('images/slider-2.jpg'); background-size: cover; background-position: center; color: white; padding: 100px 0; text-align: center; }
+    .header-section h1 { font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 700; }
+    .form-section, .service-info-section { padding: 60px 0; }
+    .form-section h2, .service-info-section h2 { font-family: 'Playfair Display', serif; margin-bottom: 40px; text-align: center; }
+    .card { border: none; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+    .card-body { padding: 2rem; }
+    .form-control { border-radius: 10px; }
+    .btn-primary { border-radius: 50px; background-color: #007bff; border: none; padding: 10px 30px; font-size: 18px; }
+    .btn-primary:hover { background-color: #0056b3; }
+    .input-group-text { border-radius: 10px 0 0 10px; border-right: 0; background-color: #e9ecef; }
+    .footer { background-color: #f1f1f1; padding: 40px 0; text-align: center; margin-top: 60px; }
+  </style>
+</head>
+<body>
+
+  <div class="header-section">
+    <h1>Car Washing Service</h1>
+    <p>Request car cleaning service at your home or location</p>
+  </div>
+
+  <div class="container service-info-section">
+    <h2>About Our Car Washing Service</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card text-center p-3 h-100">
+          <div class="card-body">
+            <i class="fa fa-car fa-3x mb-3 text-primary"></i>
+            <h5 class="card-title">Professional Cleaning</h5>
+            <p class="card-text">We provide thorough car cleaning using safe and high-quality cleaning products.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card text-center p-3 h-100">
+          <div class="card-body">
+            <i class="fa fa-tint fa-3x mb-3 text-primary"></i>
+            <h5 class="card-title">Eco-Friendly Products</h5>
+            <p class="card-text">All cleaning products used are environmentally safe and non-damaging to your vehicle.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card text-center p-3 h-100">
+          <div class="card-body">
+            <i class="fa fa-clock fa-3x mb-3 text-primary"></i>
+            <h5 class="card-title">Flexible Timing</h5>
+            <p class="card-text">Schedule car washing at a time that is convenient for you.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container form-section">
+    <h2>Car Washing Request Form</h2>
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="card">
+          <div class="card-body">
+
+            <form action="payment.html" method="get">
+             <input type="hidden" name="serviceName" value="Car Washing">
+
+              <div class="row mb-3">
+                <div class="col-md-6">
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="fa fa-user"></i></span>
+                    <input type="text" class="form-control" placeholder="Full Name" name="fullName" required>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="fa fa-phone"></i></span>
+                    <input type="tel" class="form-control" placeholder="Phone Number" name="phone" required>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <div class="col-md-6">
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                    <input type="email" class="form-control" placeholder="Email Address" name="email" required>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                    <input type="date" class="form-control" name="date" required>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <div class="input-group">
+                  <span class="input-group-text"><i class="fa fa-map-marker-alt"></i></span>
+                  <textarea class="form-control" rows="3" placeholder="Address" name="address" required></textarea>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <div class="input-group">
+                  <span class="input-group-text"><i class="fa fa-sticky-note"></i></span>
+                  <textarea class="form-control" rows="3" placeholder="Additional Notes" name="notes"></textarea>
+                </div>
+              </div>
+
+              <div class="text-center">
+                <button type="submit" class="btn btn-primary">Submit Request</button>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="container form-section">
+  <h2 class="text-center mb-4">Give Your Feedback</h2>
+  <div class="text-center">
+    <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#feedbackModal">
+      Submit Feedback
+    </button>
+  </div>
+</div>
+
+<div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="feedbackModalLabel">Feedback for Car Washing</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form action="feedback.html" method="get">
+        <div class="modal-body">
+
+          <div class="mb-3">
+            <label for="serviceName" class="form-label">Service Name</label>
+            <input type="text" class="form-control" id="serviceName" name="serviceName" value="Car Washing" readonly>
+          </div>
+
+          <div class="mb-3">
+            <label for="comment" class="form-label">Your Comment</label>
+            <textarea class="form-control" id="comment" name="comment" rows="3" required></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Rating</label>
+            <select class="form-select" name="rating" required>
+              <option value="">Choose Rating</option>
+              <option value="1">1 Star</option>
+              <option value="2">2 Stars</option>
+              <option value="3">3 Stars</option>
+              <option value="4">4 Stars</option>
+              <option value="5">5 Stars</option>
+            </select>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Submit Feedback</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+  <div class="site-footer bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4">
+            <h2 class="footer-heading mb-4">About</h2>
+            <p>We are a group of students deticating ourselves to help elderly community with ease.</p>
+            <div class="my-5 social">
+              <a href="#" class="pl-0 pr-3"><span class="icon-facebook"></span></a>
+              <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
+              <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
+              <a href="#" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
+            </div>
+          </div>
+          <div class="col-lg-8">
+            <div class="row">
+              <div class="col-lg-4">
+                <h2 class="footer-heading mb-4">Quick Links</h2>
+                <ul class="list-unstyled">
+                  <li><a href="#">Contact Us</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row text-center">
+          <div class="col-md-12">
+            <div class="border-top pt-5">
+              <p class="copyright"><small>
+                © <script>document.write(new Date().getFullYear());</script>
+                All rights reserved | Template provided by Colorlib
+              </small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
