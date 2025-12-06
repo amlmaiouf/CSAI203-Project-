@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <title>Nurse Request — Elderly Care</title>
+  <title>Feedback — Elderly Care</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -17,12 +17,34 @@
       background-color: #f8f9fa;
     }
     .header-section {
-      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/slider-2.jpg');
-      background-size: cover;
-      background-position: center;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      position: relative;
       color: white;
       padding: 100px 0;
       text-align: center;
+      overflow: hidden;
+    }
+    .header-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M30 10l5 15h15l-12 9 5 15-13-10-13 10 5-15-12-9h15z' fill='%23fff' opacity='.08'/%3E%3C/svg%3E");
+      background-size: 60px 60px;
+    }
+    .header-section::after {
+      content: '\f005';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      position: absolute;
+      right: 8%;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 180px;
+      opacity: 0.08;
+    }
+    .header-section h1, .header-section p {
+      position: relative;
+      z-index: 1;
     }
     .header-section h1 {
       font-family: 'Playfair Display', serif;
@@ -40,50 +62,11 @@
       box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     }
     .breadcrumb-nav a {
-      color: #007bff;
+      color: #667eea;
       text-decoration: none;
     }
-    .form-section, .service-info-section {
+    .form-section {
       padding: 60px 0;
-    }
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 36px;
-      margin-bottom: 40px;
-      text-align: center;
-      color: #2d3436;
-    }
-    .section-title span {
-      color: #007bff;
-    }
-    .info-card {
-      background: #fff;
-      border: none;
-      border-radius: 20px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-      transition: all 0.4s ease;
-      height: 100%;
-      padding: 40px 30px;
-      text-align: center;
-    }
-    .info-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.12);
-    }
-    .info-card i {
-      font-size: 50px;
-      color: #007bff;
-      margin-bottom: 25px;
-    }
-    .info-card h5 {
-      font-family: 'Playfair Display', serif;
-      font-size: 22px;
-      margin-bottom: 15px;
-      color: #2d3436;
-    }
-    .info-card p {
-      color: #636e72;
-      line-height: 1.7;
     }
     .form-card {
       background: #fff;
@@ -93,7 +76,7 @@
       overflow: hidden;
     }
     .form-card .card-header {
-      background: linear-gradient(135deg, #007bff, #0056b3);
+      background: linear-gradient(135deg, #667eea, #764ba2);
       color: #fff;
       padding: 25px;
       text-align: center;
@@ -114,21 +97,21 @@
       transition: all 0.3s ease;
     }
     .form-control:focus {
-      border-color: #007bff;
-      box-shadow: 0 0 0 3px rgba(0,123,255,0.1);
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102,126,234,0.1);
     }
     .input-group-text {
       border-radius: 12px 0 0 12px;
       border: 2px solid #e9ecef;
       border-right: 0;
       background-color: #f8f9fa;
-      color: #007bff;
+      color: #667eea;
     }
     .input-group .form-control {
       border-radius: 0 12px 12px 0;
     }
     .btn-primary {
-      background: linear-gradient(135deg, #007bff, #0056b3);
+      background: linear-gradient(135deg, #667eea, #764ba2);
       border: none;
       border-radius: 50px;
       padding: 15px 50px;
@@ -137,59 +120,17 @@
       transition: all 0.3s ease;
     }
     .btn-primary:hover {
-      background: linear-gradient(135deg, #0056b3, #003d82);
+      background: linear-gradient(135deg, #5a6fd6, #6a4190);
       transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(0,123,255,0.3);
+      box-shadow: 0 10px 30px rgba(102,126,234,0.3);
     }
-    .feedback-section {
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      padding: 60px 0;
-      color: #fff;
-    }
-    .feedback-section h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 32px;
-      margin-bottom: 20px;
-    }
-    .btn-feedback {
-      background: #fff;
-      color: #667eea;
-      border: none;
-      border-radius: 50px;
-      padding: 15px 40px;
-      font-size: 18px;
-      font-weight: 600;
-      transition: all 0.3s ease;
-    }
-    .btn-feedback:hover {
-      background: #f8f9fa;
-      transform: scale(1.05);
-    }
-    .price-badge {
-      background: linear-gradient(135deg, #00b894, #00cec9);
-      color: #fff;
-      padding: 10px 25px;
-      border-radius: 50px;
-      font-size: 18px;
-      font-weight: 600;
-      display: inline-block;
-      margin-bottom: 20px;
-    }
-    .modal-content {
-      border-radius: 20px;
-      border: none;
-    }
-    .modal-header {
-      background: linear-gradient(135deg, #007bff, #0056b3);
-      color: #fff;
-      border-radius: 20px 20px 0 0;
-      border: none;
-    }
-    .modal-header .btn-close {
-      filter: brightness(0) invert(1);
+    .star-rating {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
     }
     .star-rating i {
-      font-size: 28px;
+      font-size: 36px;
       color: #ddd;
       cursor: pointer;
       transition: all 0.2s ease;
@@ -198,6 +139,13 @@
     .star-rating i.active {
       color: #ffc107;
       transform: scale(1.2);
+    }
+    .rating-text {
+      text-align: center;
+      margin-top: 10px;
+      font-weight: 600;
+      color: #667eea;
+      min-height: 24px;
     }
     .site-footer {
       background: #2d3436;
@@ -215,7 +163,7 @@
       transition: color 0.3s ease;
     }
     .site-footer a:hover {
-      color: #007bff;
+      color: #667eea;
     }
     .social-icons a {
       display: inline-flex;
@@ -229,8 +177,52 @@
       transition: all 0.3s ease;
     }
     .social-icons a:hover {
-      background: #007bff;
-      transform: translateY(-5px);
+      background: #667eea;
+      color: #fff;
+    }
+    .success-message {
+      display: none;
+      background: linear-gradient(135deg, #00b894, #00cec9);
+      color: #fff;
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      margin-bottom: 30px;
+      animation: fadeIn 0.5s ease;
+    }
+    .success-message i {
+      font-size: 60px;
+      margin-bottom: 20px;
+      display: block;
+    }
+    .success-message h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+    .success-message p {
+      font-size: 16px;
+      opacity: 0.9;
+      margin-bottom: 20px;
+    }
+    .success-message .btn-back {
+      background: #fff;
+      color: #00b894;
+      border: none;
+      border-radius: 50px;
+      padding: 12px 30px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.3s ease;
+    }
+    .success-message .btn-back:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
@@ -283,139 +275,86 @@
 
   <div class="header-section">
     <div class="container">
-      <h1>Request a Nurse</h1>
-      <p>Professional nursing care delivered to your doorstep</p>
+      <h1>Share Your Feedback</h1>
+      <p>Your feedback helps us improve our services</p>
     </div>
   </div>
 
   <div class="breadcrumb-nav">
     <div class="container">
-      <a href="index.html">Home</a> / <a href="services.html">Services</a> / <span class="text-muted">Nurse Request</span>
-    </div>
-  </div>
-
-  <div class="container service-info-section">
-    <h2 class="section-title">Why Choose Our <span>Nursing Service</span></h2>
-    <div class="row g-4">
-      <div class="col-md-4">
-        <div class="info-card">
-          <i class="fa fa-user-nurse"></i>
-          <h5>Professional Care</h5>
-          <p>Our nurses are fully trained, certified, and experienced in elderly care, ensuring compassionate and professional service.</p>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="info-card">
-          <i class="fa fa-clock"></i>
-          <h5>Flexible Scheduling</h5>
-          <p>Schedule the service at your convenience. Available for daily, weekly, or one-time support based on your needs.</p>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="info-card">
-          <i class="fa fa-shield-alt"></i>
-          <h5>Safe & Reliable</h5>
-          <p>All nurses follow strict hygiene and safety protocols to provide a secure and trustworthy care environment.</p>
-        </div>
-      </div>
+      <a href="index.html">Home</a> / <span class="text-muted">Feedback</span>
     </div>
   </div>
 
   <div class="container form-section">
     <div class="row justify-content-center">
       <div class="col-lg-8">
-        <div class="form-card">
+        <div class="success-message" id="successMessage">
+          <i class="fa fa-check-circle"></i>
+          <h3>Thank You!</h3>
+          <p>Your feedback has been submitted successfully. We appreciate your time!</p>
+          <a href="index.html" class="btn-back">Back to Home</a>
+        </div>
+        <div class="form-card" id="feedbackForm">
           <div class="card-header">
-            <h4><i class="fa fa-clipboard-list me-2"></i>Nurse Request Form</h4>
+            <h4><i class="fa fa-comment-dots me-2"></i>Service Feedback Form</h4>
           </div>
           <div class="card-body">
-            <div class="text-center mb-4">
-              <span class="price-badge"><i class="fa fa-tag me-2"></i>Starting from 500 EGP/visit</span>
-            </div>
-            <form action="Payment.html" method="get">
-              <input type="hidden" name="serviceName" value="Nurse Request">
-              <input type="hidden" name="servicePrice" value="500">
-
-              <div class="row mb-4">
-                <div class="col-md-6 mb-3 mb-md-0">
-                  <label class="form-label fw-bold">Full Name</label>
-                  <div class="input-group">
-                    <span class="input-group-text"><i class="fa fa-user"></i></span>
-                    <input type="text" class="form-control" placeholder="Enter your full name" name="fullName" required>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <label class="form-label fw-bold">Phone Number</label>
-                  <div class="input-group">
-                    <span class="input-group-text"><i class="fa fa-phone"></i></span>
-                    <input type="tel" class="form-control" placeholder="Enter phone number" name="phone" required>
-                  </div>
-                </div>
-              </div>
-
-              <div class="row mb-4">
-                <div class="col-md-6 mb-3 mb-md-0">
-                  <label class="form-label fw-bold">Email Address</label>
-                  <div class="input-group">
-                    <span class="input-group-text"><i class="fa fa-envelope"></i></span>
-                    <input type="email" class="form-control" placeholder="Enter email address" name="email" required>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <label class="form-label fw-bold">Preferred Date</label>
-                  <div class="input-group">
-                    <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-                    <input type="date" class="form-control" name="date" required>
-                  </div>
-                </div>
-              </div>
+            <form action="{{ url_for('feedback') }}" method="POST">
+              <input type="hidden" name="type" value="feedback">
 
               <div class="mb-4">
-                <label class="form-label fw-bold">Service Duration</label>
-                <select class="form-control" name="duration" required>
-                  <option value="">Select duration</option>
-                  <option value="4hours">4 Hours - 500 EGP</option>
-                  <option value="8hours">8 Hours - 900 EGP</option>
-                  <option value="12hours">12 Hours - 1200 EGP</option>
-                  <option value="24hours">24 Hours - 2000 EGP</option>
-                </select>
-              </div>
-
-              <div class="mb-4">
-                <label class="form-label fw-bold">Address</label>
+                <label class="form-label fw-bold">Select Service</label>
                 <div class="input-group">
-                  <span class="input-group-text"><i class="fa fa-map-marker-alt"></i></span>
-                  <textarea class="form-control" rows="2" placeholder="Enter your full address" name="address" required></textarea>
+                  <span class="input-group-text"><i class="fa fa-concierge-bell"></i></span>
+                  <select class="form-control" name="serviceName" required>
+                    <option value="">Choose a service to review</option>
+                    <option value="Nurse Request">Nurse Request</option>
+                    <option value="Doctor Checkup">Doctor Checkup</option>
+                    <option value="Need Company">Companionship</option>
+                    <option value="Car Washing">Car Washing</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="mb-4 text-center">
+                <label class="form-label fw-bold mb-3">Rate Our Service</label>
+                <div class="star-rating" id="starRating">
+                  <i class="far fa-star" data-rating="1"></i>
+                  <i class="far fa-star" data-rating="2"></i>
+                  <i class="far fa-star" data-rating="3"></i>
+                  <i class="far fa-star" data-rating="4"></i>
+                  <i class="far fa-star" data-rating="5"></i>
+                </div>
+                <div class="rating-text" id="ratingText"></div>
+                <input type="hidden" name="rating" id="ratingInput" required>
+              </div>
+
+              <div class="mb-4">
+                <label class="form-label fw-bold">Your Name</label>
+                <div class="input-group">
+                  <span class="input-group-text"><i class="fa fa-user"></i></span>
+                  <input type="text" class="form-control" name="userName" placeholder="Enter your name" required>
                 </div>
               </div>
 
               <div class="mb-4">
-                <label class="form-label fw-bold">Special Requirements (Optional)</label>
+                <label class="form-label fw-bold">Your Feedback</label>
                 <div class="input-group">
-                  <span class="input-group-text"><i class="fa fa-sticky-note"></i></span>
-                  <textarea class="form-control" rows="3" placeholder="Any specific medical conditions or requirements..." name="notes"></textarea>
+                  <span class="input-group-text"><i class="fa fa-pen"></i></span>
+                  <textarea class="form-control" name="comment" rows="5" placeholder="Tell us about your experience..." required></textarea>
                 </div>
               </div>
 
               <div class="text-center">
                 <button type="submit" class="btn btn-primary">
-                  <i class="fa fa-paper-plane me-2"></i>Proceed to Payment
+                  <i class="fa fa-paper-plane me-2"></i>Submit Feedback
                 </button>
               </div>
             </form>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-
-  <div class="feedback-section text-center">
-    <div class="container">
-      <h3>Share Your Experience</h3>
-      <p class="mb-4">Your feedback helps us improve our services</p>
-      <a href="Feedback.html" class="btn btn-feedback">
-        <i class="fa fa-star me-2"></i>Leave Feedback
-      </a>
     </div>
   </div>
 
@@ -471,5 +410,67 @@
   <script src="../js/popper.min.js"></script>
   <script src="../js/bootstrap.min.js"></script>
   <script src="../js/main.js"></script>
+  <script>
+    const ratingTexts = ['', 'Poor', 'Fair', 'Good', 'Very Good', 'Excellent'];
+
+    document.querySelectorAll('.star-rating i').forEach(star => {
+      star.addEventListener('click', function() {
+        const rating = this.dataset.rating;
+        document.getElementById('ratingInput').value = rating;
+        document.getElementById('ratingText').textContent = ratingTexts[rating];
+        document.querySelectorAll('.star-rating i').forEach((s, index) => {
+          if (index < rating) {
+            s.classList.remove('far');
+            s.classList.add('fas', 'active');
+          } else {
+            s.classList.remove('fas', 'active');
+            s.classList.add('far');
+          }
+        });
+      });
+
+      star.addEventListener('mouseenter', function() {
+        const rating = this.dataset.rating;
+        document.querySelectorAll('.star-rating i').forEach((s, index) => {
+          if (index < rating) {
+            s.classList.add('hover');
+          }
+        });
+      });
+
+      star.addEventListener('mouseleave', function() {
+        document.querySelectorAll('.star-rating i').forEach(s => {
+          s.classList.remove('hover');
+        });
+      });
+    });
+
+    // Form submission handler
+    document.querySelector('form').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Validate rating is selected
+      if (!document.getElementById('ratingInput').value) {
+        alert('Please select a rating');
+        return;
+      }
+
+      // Hide form and show success message
+      document.getElementById('feedbackForm').style.display = 'none';
+      document.getElementById('successMessage').style.display = 'block';
+
+      // Scroll to success message
+      document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      // Reset form
+      this.reset();
+      document.getElementById('ratingInput').value = '';
+      document.getElementById('ratingText').textContent = '';
+      document.querySelectorAll('.star-rating i').forEach(s => {
+        s.classList.remove('fas', 'active');
+        s.classList.add('far');
+      });
+    });
+  </script>
 </body>
 </html>
