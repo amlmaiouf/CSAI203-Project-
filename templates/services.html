@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
+    
     .service-card {
       background: #fff;
       border-radius: 20px;
@@ -63,90 +64,13 @@
       background: linear-gradient(135deg, #0056b3, #003d82);
       transform: scale(1.05);
     }
-    .hero-services {
-      background: linear-gradient(135deg, #1a5276 0%, #2980b9 50%, #5dade2 100%);
-      position: relative;
-      padding: 120px 0;
-      text-align: center;
-      color: #fff;
-      overflow: hidden;
-    }
-    .hero-services::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cpath d='M45 50h10M50 45v10' stroke='%23fff' stroke-width='3' opacity='.1'/%3E%3Ccircle cx='50' cy='50' r='20' fill='none' stroke='%23fff' stroke-width='1' opacity='.08'/%3E%3C/svg%3E");
-      background-size: 100px 100px;
-    }
-    .hero-services .container {
-      position: relative;
-      z-index: 1;
-    }
-    .hero-services h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 56px;
-      margin-bottom: 20px;
-    }
-    .hero-services p {
-      font-size: 20px;
-      opacity: 0.9;
-    }
-    .hero-icon {
-      position: absolute;
-      color: rgba(255,255,255,0.08);
-      font-size: 150px;
-    }
-    .hero-icon.icon-1 { top: 10%; left: 5%; }
-    .hero-icon.icon-2 { bottom: 10%; right: 5%; }
-    .hero-icon.icon-3 { top: 50%; right: 15%; transform: translateY(-50%); font-size: 100px; }
-    .feature-box {
-      background: #fff;
-      padding: 40px 30px;
-      border-radius: 15px;
-      text-align: center;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-      transition: all 0.3s ease;
-      height: 100%;
-    }
-    .feature-box:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 40px rgba(0,0,0,0.12);
-    }
-    .feature-box i {
-      font-size: 50px;
-      color: #007bff;
-      margin-bottom: 20px;
-    }
-    .feature-box h4 {
-      font-family: 'Playfair Display', serif;
-      margin-bottom: 15px;
-    }
-    .cta-section {
-      background: linear-gradient(135deg, #007bff, #0056b3);
-      padding: 80px 0;
-      color: #fff;
-    }
-    .cta-section h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 40px;
-      margin-bottom: 20px;
-    }
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 40px;
-      text-align: center;
-      margin-bottom: 50px;
-      color: #2d3436;
-    }
-    .section-title span {
-      color: #007bff;
-    }
   </style>
 </head>
-<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+<body>
 
   <div class="site-wrap">
 
+    <!-- Mobile menu -->
     <div class="site-mobile-menu site-navbar-target">
       <div class="site-mobile-menu-header">
         <div class="site-mobile-menu-close mt-3">
@@ -156,6 +80,7 @@
       <div class="site-mobile-menu-body"></div>
     </div>
 
+    <!-- Header -->
     <header class="site-navbar light js-sticky-header site-navbar-target" role="banner">
       <div class="container">
         <div class="row align-items-center">
@@ -194,6 +119,7 @@
       </div>
     </header>
 
+    <!-- Hero Section -->
     <div class="hero-services">
       <i class="fas fa-hand-holding-medical hero-icon icon-1"></i>
       <i class="fas fa-heartbeat hero-icon icon-2"></i>
@@ -204,6 +130,7 @@
       </div>  
     </div>
 
+    <!-- Services Cards -->
     <div class="py-5" style="background: #f8f9fa;">
       <div class="container py-5">
         <h2 class="section-title">What We <span>Offer</span></h2>
@@ -214,7 +141,7 @@
               <div class="service-card-body">
                 <h3>Nurse Request</h3>
                 <p>Professional nursing care at your home with trained and certified nurses.</p>
-                <a href="NurseRequest.html" class="btn">Request Now</a>
+                <a href="/book/1" class="btn">Request Now</a>
               </div>
             </div>
           </div>
@@ -224,7 +151,7 @@
               <div class="service-card-body">
                 <h3>Doctor Checkup</h3>
                 <p>Regular medical checkups by experienced doctors at your doorstep.</p>
-                <a href="DoctorCheckup.html" class="btn">Book Now</a>
+                <a href="/book/2" class="btn">Book Now</a>
               </div>
             </div>
           </div>
@@ -234,7 +161,7 @@
               <div class="service-card-body">
                 <h3>Need Company?</h3>
                 <p>Friendly companions to spend quality time and provide emotional support.</p>
-                <a href="NeedCompany.html" class="btn">Find Companion</a>
+                <a href="/book/3" class="btn">Find Companion</a>
               </div>
             </div>
           </div>
@@ -244,7 +171,7 @@
               <div class="service-card-body">
                 <h3>Car Washing</h3>
                 <p>Convenient car washing service while you relax at home.</p>
-                <a href="CarWashing.html" class="btn">Book Service</a>
+                <a href="/book/4" class="btn">Book Service</a>
               </div>
             </div>
           </div>
@@ -252,43 +179,7 @@
       </div>
     </div>
 
-    <div class="py-5">
-      <div class="container py-5">
-        <h2 class="section-title">Additional <span>Services</span></h2>
-        <div class="row g-4">
-          <div class="col-md-4">
-            <div class="feature-box">
-              <i class="fas fa-shopping-cart"></i>
-              <h4>Supermarket Delivery</h4>
-              <p>We deliver groceries and essentials right to your doorstep with care.</p>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="feature-box">
-              <i class="fas fa-pills"></i>
-              <h4>Pharmacy Delivery</h4>
-              <p>Get your medications delivered on time, every time.</p>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="feature-box">
-              <i class="fas fa-paw"></i>
-              <h4>Pet Care</h4>
-              <p>Professional pet care services for your beloved companions.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="cta-section">
-      <div class="container text-center">
-        <h2>We Care For Your Loved Ones</h2>
-        <p class="mb-4" style="font-size: 18px; opacity: 0.9;">Compassionate care with a personal touch. Your family is our priority.</p>
-        <p style="font-size: 24px; font-weight: 700;">"You Click, We Deliver"</p>
-      </div>
-    </div>
-
+    <!-- Footer -->
     <div class="site-footer bg-light">
       <div class="container">
         <div class="row">
