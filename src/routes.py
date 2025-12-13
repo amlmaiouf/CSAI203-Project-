@@ -54,3 +54,35 @@ def book_service(service_id):
         success=success,
         error_message=error_message
     )
+# Static pages routes
+@app.route('/nurserequest')
+def nurse_request():
+    return render_template('NurseRequest.html')
+
+@app.route('/doctorcheckup')
+def doctor_checkup():
+    return render_template('DoctorCheckup.html')
+
+@app.route('/needcompany')
+def need_company():
+    return render_template('NeedCompany.html')
+
+@app.route('/carwashing')
+def car_washing():
+    return render_template('CarWashing.html')
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
+
+@app.route('/registration')
+def registration():
+    return render_template('registration.html')
+
+@app.route('/user_profile')
+def user_profile():
+    return render_template('user_profile.html')

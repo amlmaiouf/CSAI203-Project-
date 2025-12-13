@@ -3,7 +3,7 @@ from flask import Flask
 app = Flask(
     __name__,
     template_folder="../templates",  # templates folder
-    static_folder="../templates"     # CSS, images, fonts folder
+    static_folder="../static"     # CSS, images, fonts folder
 )
 
 from routes import *
