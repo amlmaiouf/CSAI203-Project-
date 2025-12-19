@@ -5,18 +5,17 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    
 
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="fonts/icomoon/style.css">
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/jquery-ui.css">
-  <link rel="stylesheet" href="css/owl.carousel.min.css">
-  <link rel="stylesheet" href="css/owl.theme.default.min.css">
-  <link rel="stylesheet" href="css/jquery.fancybox.min.css">
-  <link rel="stylesheet" href="css/bootstrap-datepicker.css">
-  <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
-  <link rel="stylesheet" href="css/aos.css">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='fonts/icomoon/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery-ui.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.theme.default.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.fancybox.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-datepicker.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='fonts/flaticon/font/flaticon.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/aos.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
 
   <style>
     
@@ -98,10 +97,10 @@
                 <li class="has-children">
                   <a href="services.html" class="active nav-link">Services</a>
                   <ul class="dropdown">
-                    <li><a href="NurseRequest.html" class="nav-link">Nurse Request</a></li>
-                    <li><a href="DoctorCheckup.html" class="nav-link">Doctor Checkup</a></li>
-                    <li><a href="NeedCompany.html" class="nav-link">Need Company?</a></li>
-                    <li><a href="CarWashing.html" class="nav-link">Car Washing</a></li>
+                    <li><a href="{{ url_for('nurse_request') }}" class="nav-link">Nurse Request</a></li>
+                    <li><a href="{{ url_for('doctor_checkup') }}" class="nav-link">Doctor Checkup</a></li>
+                    <li><a href="{{ url_for('need_company') }}" class="nav-link">Need Company?</a></li>
+                    <li><a href="{{ url_for('car_washing') }}" class="nav-link">Car Washing</a></li>
                     <li class="has-children">
                       <a href="#">More Links</a>
                       <ul class="dropdown">
@@ -152,7 +151,7 @@
         <div class="row g-4">
           <div class="col-md-6 col-lg-3">
             <div class="service-card">
-              <img src="images/nurse_service.svg" alt="Nurse Service">
+              <img src="{{ url_for('static', filename='images/nurse_service.svg') }}" alt="Nurse Service">
               <div class="service-card-body">
                 <h3>Nurse Request</h3>
                 <p>Professional nursing care at your home with trained and certified nurses.</p>
@@ -162,7 +161,7 @@
           </div>
           <div class="col-md-6 col-lg-3">
             <div class="service-card">
-              <img src="images/doctor_service.svg" alt="Doctor Service">
+              <img src="{{ url_for('static', filename='images/doctor_service.svg') }}" alt="Doctor Service">
               <div class="service-card-body">
                 <h3>Doctor Checkup</h3>
                 <p>Regular medical checkups by experienced doctors at your doorstep.</p>
@@ -172,7 +171,7 @@
           </div>
           <div class="col-md-6 col-lg-3">
             <div class="service-card">
-              <img src="images/companion_service.svg" alt="Companion Service">
+              <img src="{{ url_for('static', filename='images/companion_service.svg') }}" alt="Companion Service">
               <div class="service-card-body">
                 <h3>Need Company?</h3>
                 <p>Friendly companions to spend quality time and provide emotional support.</p>
@@ -182,7 +181,7 @@
           </div>
           <div class="col-md-6 col-lg-3">
             <div class="service-card">
-              <img src="images/car_service.svg" alt="Car Washing Service">
+              <img src="{{ url_for('static', filename='images/car_service.svg') }}" alt="Car Washing Service">
               <div class="service-card-body">
                 <h3>Car Washing</h3>
                 <p>Convenient car washing service while you relax at home.</p>
@@ -213,19 +212,19 @@
               <div class="col-lg-4">
                 <h2 class="footer-heading mb-4">Quick Links</h2>
                 <ul class="list-unstyled">
-                  <li><a href="../index.html">Home</a></li>
-                  <li><a href="services.html">Services</a></li>
-                  <li><a href="about.html">About Us</a></li>
-                  <li><a href="contact.html">Contact Us</a></li>
+                  <li><a href="{{ url_for('home') }}">Home</a></li>
+                  <li><a href="{{ url_for('view_services') }}">Services</a></li>
+                  <li><a href="{{ url_for('about') }}">About Us</a></li>
+                  <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
                 </ul>
               </div>
               <div class="col-lg-4">
                 <h2 class="footer-heading mb-4">Services</h2>
                 <ul class="list-unstyled">
-                  <li><a href="NurseRequest.html">Nurse Request</a></li>
-                  <li><a href="DoctorCheckup.html">Doctor Checkup</a></li>
-                  <li><a href="NeedCompany.html">Companionship</a></li>
-                  <li><a href="CarWashing.html">Car Washing</a></li>
+                  <li><a href="{{ url_for('nurse_request') }}">Nurse Request</a></li>
+                  <li><a href="{{ url_for('doctor_checkup') }}">Doctor Checkup</a></li>
+                  <li><a href="{{ url_for('need_company') }}">Companionship</a></li>
+                  <li><a href="{{ url_for('car_washing') }}">Car Washing</a></li>
                 </ul>
               </div>
               <div class="col-lg-4">
@@ -252,7 +251,5 @@
 
   </div>
 
-  <script src="js/jquery-3.3.1.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
 </body>
 </html>
