@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Employee Management — Elderly Care Admin</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='fonts/icomoon/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+  <style>
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background-color: #f4f6f9;
+    }
+    .admin-header {
+      background: linear-gradient(135deg, #1a5276 0%, #2980b9 50%, #5dade2 100%);
+      color: white;
+      padding: 30px 0;
+    }
+    .admin-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      margin: 0;
+    }
+    .sidebar {
+      background: #2c3e50;
+      min-height: calc(100vh - 80px);
+      padding: 20px 0;
+    }
+    .sidebar .nav-link {
+      color: #ecf0f1;
+      padding: 12px 25px;
+      border-left: 3px solid transparent;
+      transition: all 0.3s ease;
+    }
+    .sidebar .nav-link:hover,
+    .sidebar .nav-link.active {
+      background: rgba(255,255,255,0.1);
+      border-left-color: #3498db;
+      color: #fff;
+    }
+    .sidebar .nav-link i {
+      width: 25px;
+      margin-right: 10px;
+    }
+    .content-card {
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      overflow: hidden;
+    }
+    .content-card .card-header {
+      background: #fff;
+      border-bottom: 1px solid #eee;
+      padding: 20px 25px;
+    }
+    .content-card .card-header h5 {
+      font-family: 'Playfair Display', serif;
+      margin: 0;
+      color: #2d3436;
+    }
+    .content-card .card-body {
+      padding: 25px;
+    }
+    .table th {
+      font-weight: 600;
+      color: #2d3436;
+      border-top: none;
+      background: #f8f9fa;
+    }
+    .btn-action {
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 13px;
+      margin: 2px;
+    }
+    .badge-role {
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .badge-staff {
+      background: #e3f2fd;
+      color: #1565c0;
+    }
+    .badge-doctor {
+      background: #fce4ec;
+      color: #c62828;
+    }
+    .badge-caregiver {
+      background: #e8f5e9;
+      color: #2e7d32;
+    }
+    .add-btn {
+      background: linear-gradient(135deg, #11998e, #38ef7d);
+      border: none;
+      border-radius: 25px;
+      padding: 10px 25px;
+      color: #fff;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    .add-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 20px rgba(17,153,142,0.4);
+      color: #fff;
+    }
+    .employee-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 16px;
+    }
+    .search-box {
+      border-radius: 25px;
+      padding: 10px 20px;
+      border: 2px solid #e9ecef;
+    }
+    .search-box:focus {
+      border-color: #11998e;
+      box-shadow: none;
+    }
+    .filter-badge {
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .filter-badge:hover, .filter-badge.active {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="admin-header">
+    <div class="container-fluid px-4">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <h1><i class="fas fa-shield-alt me-2"></i>Admin Dashboard</h1>
+          <p class="mb-0 opacity-75">Employee Management</p>
+        </div>
+        <div class="col-md-6 text-end">
+          <span class="me-3">Welcome, {{ current_user.name }}</span>
+          <a href="{{ url_for('auth.logout') }}" class="btn btn-outline-light btn-sm">
+            <i class="fas fa-sign-out-alt me-1"></i>Logout
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="col-md-2 sidebar px-0">
+        <nav class="nav flex-column">
+          <a class="nav-link" href="{{ url_for('admin.dashboard') }}">
+            <i class="fas fa-tachometer-alt"></i>Dashboard
+          </a>
+          <a class="nav-link" href="{{ url_for('admin.services_list') }}">
+            <i class="fas fa-concierge-bell"></i>Services
+          </a>
+          <a class="nav-link active" href="{{ url_for('admin.employees_list') }}">
+            <i class="fas fa-users"></i>Employees
+          </a>
+          <a class="nav-link" href="{{ url_for('admin.service_performance') }}">
+            <i class="fas fa-chart-line"></i>Performance
+          </a>
+          <a class="nav-link" href="{{ url_for('admin.feedback_list') }}">
+            <i class="fas fa-comments"></i>Feedback
+          </a>
+          <hr class="my-3 mx-3" style="border-color: rgba(255,255,255,0.2);">
+          <a class="nav-link" href="{{ url_for('main.index') }}">
+            <i class="fas fa-home"></i>Back to Site
+          </a>
+        </nav>
+      </div>
+
+      <!-- Main Content -->
+      <div class="col-md-10 py-4 px-4">
+        
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="alert alert-{{ 'success' if category == 'success' else 'danger' if category == 'error' else 'info' }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <!-- Page Header -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <div>
+            <h2 style="font-family: 'Playfair Display', serif; color: #2d3436;">
+              <i class="fas fa-users me-2"></i>Employee Management
+            </h2>
+            <p class="text-muted mb-0">Manage staff, doctors, and caregivers</p>
+          </div>
+          <a href="{{ url_for('admin.add_employee') }}" class="add-btn">
+            <i class="fas fa-user-plus me-2"></i>Add New Employee
+          </a>
+        </div>
+
+        <!-- Role Statistics -->
+        <div class="row mb-4">
+          <div class="col-md-4">
+            <div class="content-card p-3">
+              <div class="d-flex align-items-center">
+                <div class="employee-avatar me-3" style="background: linear-gradient(135deg, #1565c0, #42a5f5);">
+                  <i class="fas fa-user-tie"></i>
+                </div>
+                <div>
+                  <h4 class="mb-0">{{ employees|selectattr('role', 'equalto', 'Staff')|list|length }}</h4>
+                  <small class="text-muted">Staff Members</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="content-card p-3">
+              <div class="d-flex align-items-center">
+                <div class="employee-avatar me-3" style="background: linear-gradient(135deg, #c62828, #ef5350);">
+                  <i class="fas fa-user-md"></i>
+                </div>
+                <div>
+                  <h4 class="mb-0">{{ employees|selectattr('role', 'equalto', 'Doctor')|list|length }}</h4>
+                  <small class="text-muted">Doctors</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="content-card p-3">
+              <div class="d-flex align-items-center">
+                <div class="employee-avatar me-3" style="background: linear-gradient(135deg, #2e7d32, #66bb6a);">
+                  <i class="fas fa-hand-holding-heart"></i>
+                </div>
+                <div>
+                  <h4 class="mb-0">{{ employees|selectattr('role', 'equalto', 'Caregiver')|list|length }}</h4>
+                  <small class="text-muted">Caregivers</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Employees Table -->
+        <div class="content-card">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <h5><i class="fas fa-list me-2"></i>All Employees ({{ employees|length }})</h5>
+            <input type="text" class="form-control search-box" id="searchInput" placeholder="Search employees..." style="max-width: 300px;">
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-hover" id="employeesTable">
+                <thead>
+                  <tr>
+                    <th>Employee</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>Joined</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for emp in employees %}
+                  <tr>
+                    <td>
+                      <div class="d-flex align-items-center">
+                        <div class="employee-avatar me-3">
+                          {{ emp.name[0].upper() }}
+                        </div>
+                        <strong>{{ emp.name }}</strong>
+                      </div>
+                    </td>
+                    <td>
+                      <a href="mailto:{{ emp.email }}">{{ emp.email }}</a>
+                    </td>
+                    <td>
+                      <span class="badge-role badge-{{ emp.role.lower() }}">
+                        <i class="fas fa-{{ 'user-tie' if emp.role == 'Staff' else 'user-md' if emp.role == 'Doctor' else 'hand-holding-heart' }} me-1"></i>
+                        {{ emp.role }}
+                      </span>
+                    </td>
+                    <td>{{ emp.phone_number or 'N/A' }}</td>
+                    <td>{{ emp.address[:30] + '...' if emp.address and emp.address|length > 30 else emp.address or 'N/A' }}</td>
+                    <td>{{ emp.created_at.strftime('%Y-%m-%d') if emp.created_at else 'N/A' }}</td>
+                    <td>
+                      <a href="{{ url_for('admin.edit_employee', user_id=emp.user_id) }}" 
+                         class="btn btn-outline-primary btn-action" title="Edit">
+                        <i class="fas fa-edit"></i>
+                      </a>
+                      <button type="button" class="btn btn-outline-danger btn-action" 
+                              onclick="confirmDelete({{ emp.user_id }}, '{{ emp.name }}')"
+                              title="Delete">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  {% else %}
+                  <tr>
+                    <td colspan="7" class="text-center text-muted py-4">
+                      <i class="fas fa-users-slash fa-3x mb-3 d-block"></i>
+                      No employees found. <a href="{{ url_for('admin.add_employee') }}">Add your first employee</a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Confirmation Modal -->
+  <div class="modal fade" id="deleteModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"><i class="fas fa-exclamation-triangle text-danger me-2"></i>Confirm Delete</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to delete employee "<strong id="employeeNameToDelete"></strong>"?</p>
+          <p class="text-muted">This action cannot be undone.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <form id="deleteForm" method="POST" style="display: inline;">
+            <button type="submit" class="btn btn-danger">
+              <i class="fas fa-trash me-1"></i>Delete
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Search functionality
+    document.getElementById('searchInput').addEventListener('keyup', function() {
+      const filter = this.value.toLowerCase();
+      const rows = document.querySelectorAll('#employeesTable tbody tr');
+      
+      rows.forEach(row => {
+        const text = row.textContent.toLowerCase();
+        row.style.display = text.includes(filter) ? '' : 'none';
+      });
+    });
+
+    // Delete confirmation
+    function confirmDelete(userId, employeeName) {
+      document.getElementById('employeeNameToDelete').textContent = employeeName;
+      document.getElementById('deleteForm').action = '/admin/employees/delete/' + userId;
+      new bootstrap.Modal(document.getElementById('deleteModal')).show();
+    }
+  </script>
+</body>
+</html>

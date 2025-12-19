@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Admin Dashboard — Elderly Care</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='fonts/icomoon/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+  <style>
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background-color: #f4f6f9;
+    }
+    .admin-header {
+      background: linear-gradient(135deg, #1a5276 0%, #2980b9 50%, #5dade2 100%);
+      color: white;
+      padding: 30px 0;
+    }
+    .admin-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      margin: 0;
+    }
+    .sidebar {
+      background: #2c3e50;
+      min-height: calc(100vh - 80px);
+      padding: 20px 0;
+    }
+    .sidebar .nav-link {
+      color: #ecf0f1;
+      padding: 12px 25px;
+      border-left: 3px solid transparent;
+      transition: all 0.3s ease;
+    }
+    .sidebar .nav-link:hover,
+    .sidebar .nav-link.active {
+      background: rgba(255,255,255,0.1);
+      border-left-color: #3498db;
+      color: #fff;
+    }
+    .sidebar .nav-link i {
+      width: 25px;
+      margin-right: 10px;
+    }
+    .stat-card {
+      background: #fff;
+      border-radius: 15px;
+      padding: 25px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+      height: 100%;
+    }
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    }
+    .stat-card .icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: #fff;
+    }
+    .stat-card .icon.services { background: linear-gradient(135deg, #667eea, #764ba2); }
+    .stat-card .icon.employees { background: linear-gradient(135deg, #11998e, #38ef7d); }
+    .stat-card .icon.orders { background: linear-gradient(135deg, #ee0979, #ff6a00); }
+    .stat-card .icon.feedback { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+    .stat-card .icon.revenue { background: linear-gradient(135deg, #f093fb, #f5576c); }
+    .stat-card .icon.users { background: linear-gradient(135deg, #fa709a, #fee140); }
+    .stat-card h3 {
+      font-size: 32px;
+      font-weight: 700;
+      color: #2d3436;
+      margin: 0;
+    }
+    .stat-card p {
+      color: #636e72;
+      margin: 0;
+      font-size: 14px;
+    }
+    .content-card {
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      overflow: hidden;
+    }
+    .content-card .card-header {
+      background: #fff;
+      border-bottom: 1px solid #eee;
+      padding: 20px 25px;
+    }
+    .content-card .card-header h5 {
+      font-family: 'Playfair Display', serif;
+      margin: 0;
+      color: #2d3436;
+    }
+    .content-card .card-body {
+      padding: 25px;
+    }
+    .table th {
+      font-weight: 600;
+      color: #2d3436;
+      border-top: none;
+    }
+    .badge-status {
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .badge-pending { background: #ffeaa7; color: #d63031; }
+    .badge-confirmed { background: #81ecec; color: #00b894; }
+    .badge-completed { background: #55efc4; color: #00b894; }
+    .badge-cancelled { background: #fab1a0; color: #d63031; }
+    .rating-stars {
+      color: #f1c40f;
+    }
+    .top-service-item {
+      display: flex;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid #eee;
+    }
+    .top-service-item:last-child {
+      border-bottom: none;
+    }
+    .top-service-item .rank {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #3498db;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      margin-right: 15px;
+    }
+    .quick-action-btn {
+      padding: 15px 25px;
+      border-radius: 10px;
+      border: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .quick-action-btn:hover {
+      transform: translateY(-2px);
+    }
+    .quick-action-btn.primary {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: #fff;
+    }
+    .quick-action-btn.success {
+      background: linear-gradient(135deg, #11998e, #38ef7d);
+      color: #fff;
+    }
+    .quick-action-btn.warning {
+      background: linear-gradient(135deg, #f093fb, #f5576c);
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="admin-header">
+    <div class="container-fluid px-4">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <h1><i class="fas fa-shield-alt me-2"></i>Admin Dashboard</h1>
+          <p class="mb-0 opacity-75">Elderly Care Service Management System</p>
+        </div>
+        <div class="col-md-6 text-end">
+          <span class="me-3">Welcome, {{ current_user.name }}</span>
+          <a href="{{ url_for('auth.logout') }}" class="btn btn-outline-light btn-sm">
+            <i class="fas fa-sign-out-alt me-1"></i>Logout
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2 sidebar px-0">
+        <nav class="nav flex-column">
+          <a class="nav-link active" href="{{ url_for('admin.dashboard') }}">
+            <i class="fas fa-tachometer-alt"></i>Dashboard
+          </a>
+          <a class="nav-link" href="{{ url_for('admin.services_list') }}">
+            <i class="fas fa-concierge-bell"></i>Services
+          </a>
+          <a class="nav-link" href="{{ url_for('admin.employees_list') }}">
+            <i class="fas fa-users"></i>Employees
+          </a>
+          <a class="nav-link" href="{{ url_for('admin.service_performance') }}">
+            <i class="fas fa-chart-line"></i>Performance
+          </a>
+          <a class="nav-link" href="{{ url_for('admin.feedback_list') }}">
+            <i class="fas fa-comments"></i>Feedback
+          </a>
+          <hr class="my-3 mx-3" style="border-color: rgba(255,255,255,0.2);">
+          <a class="nav-link" href="{{ url_for('main.index') }}">
+            <i class="fas fa-home"></i>Back to Site
+          </a>
+        </nav>
+      </div>
+
+      <div class="col-md-10 py-4 px-4">
+        
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="alert alert-{{ 'success' if category == 'success' else 'danger' if category == 'error' else 'info' }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <div class="row g-4 mb-4">
+          <div class="col-md-4 col-lg-2">
+            <div class="stat-card">
+              <div class="d-flex justify-content-between align-items-start">
+                <div>
+                  <h3>{{ total_services }}</h3>
+                  <p>Total Services</p>
+                </div>
+                <div class="icon services">
+                  <i class="fas fa-concierge-bell"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 col-lg-2">
+            <div class="stat-card">
+              <div class="d-flex justify-content-between align-items-start">
+                <div>
+                  <h3>{{ total_employees }}</h3>
+                  <p>Employees</p>
+                </div>
+                <div class="icon employees">
+                  <i class="fas fa-user-tie"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 col-lg-2">
+            <div class="stat-card">
+              <div class="d-flex justify-content-between align-items-start">
+                <div>
+                  <h3>{{ total_orders }}</h3>
+                  <p>Total Orders</p>
+                </div>
+                <div class="icon orders">
+                  <i class="fas fa-shopping-cart"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 col-lg-2">
+            <div class="stat-card">
+              <div class="d-flex justify-content-between align-items-start">
+                <div>
+                  <h3>{{ pending_orders }}</h3>
+                  <p>Pending Orders</p>
+                </div>
+                <div class="icon feedback">
+                  <i class="fas fa-clock"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 col-lg-2">
+            <div class="stat-card">
+              <div class="d-flex justify-content-between align-items-start">
+                <div>
+                  <h3>{{ avg_rating }}</h3>
+                  <p>Avg Rating</p>
+                </div>
+                <div class="icon revenue">
+                  <i class="fas fa-star"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 col-lg-2">
+            <div class="stat-card">
+              <div class="d-flex justify-content-between align-items-start">
+                <div>
+                  <h3>{{ total_users }}</h3>
+                  <p>Users</p>
+                </div>
+                <div class="icon users">
+                  <i class="fas fa-users"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-4">
+          <div class="col-12">
+            <div class="content-card">
+              <div class="card-header">
+                <h5><i class="fas fa-bolt me-2"></i>Quick Actions</h5>
+              </div>
+              <div class="card-body">
+                <a href="{{ url_for('admin.add_service') }}" class="quick-action-btn primary me-2 mb-2">
+                  <i class="fas fa-plus me-2"></i>Add New Service
+                </a>
+                <a href="{{ url_for('admin.add_employee') }}" class="quick-action-btn success me-2 mb-2">
+                  <i class="fas fa-user-plus me-2"></i>Add New Employee
+                </a>
+                <a href="{{ url_for('admin.service_performance') }}" class="quick-action-btn warning mb-2">
+                  <i class="fas fa-chart-bar me-2"></i>View Analytics
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-lg-8">
+            <div class="content-card">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                <h5><i class="fas fa-shopping-bag me-2"></i>Recent Orders</h5>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Order ID</th>
+                        <th>Customer</th>
+                        <th>Date</th>
+                        <th>Total</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for order in recent_orders %}
+                      <tr>
+                        <td>#{{ order.order_id }}</td>
+                        <td>{{ order.customer.name if order.customer else 'N/A' }}</td>
+                        <td>{{ order.order_date.strftime('%Y-%m-%d') if order.order_date else 'N/A' }}</td>
+                        <td>EGP {{ "%.2f"|format(order.total_price) }}</td>
+                        <td>
+                          <span class="badge-status badge-{{ order.status.lower().replace(' ', '') }}">
+                            {{ order.status }}
+                          </span>
+                        </td>
+                      </tr>
+                      {% else %}
+                      <tr>
+                        <td colspan="5" class="text-center text-muted">No recent orders</td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="content-card">
+              <div class="card-header">
+                <h5><i class="fas fa-trophy me-2"></i>Top Services</h5>
+              </div>
+              <div class="card-body">
+                {% for service in top_services %}
+                <div class="top-service-item">
+                  <div class="rank">{{ loop.index }}</div>
+                  <div class="flex-grow-1">
+                    <strong>{{ service[0] }}</strong>
+                    <small class="d-block text-muted">{{ service[1] }} requests</small>
+                  </div>
+                </div>
+                {% else %}
+                <p class="text-muted text-center">No service data available</p>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-4">
+          <div class="col-12">
+            <div class="content-card">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                <h5><i class="fas fa-comments me-2"></i>Recent Feedback</h5>
+                <a href="{{ url_for('admin.feedback_list') }}" class="btn btn-sm btn-outline-primary">View All</a>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>User</th>
+                        <th>Service</th>
+                        <th>Rating</th>
+                        <th>Comment</th>
+                        <th>Date</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for fb in recent_feedback %}
+                      <tr>
+                        <td>{{ fb.reviewer.name if fb.reviewer else 'Anonymous' }}</td>
+                        <td>{{ fb.service.service_name if fb.service else 'N/A' }}</td>
+                        <td>
+                          <span class="rating-stars">
+                            {% for i in range(fb.rating) %}
+                            <i class="fas fa-star"></i>
+                            {% endfor %}
+                            {% for i in range(5 - fb.rating) %}
+                            <i class="far fa-star"></i>
+                            {% endfor %}
+                          </span>
+                        </td>
+                        <td>{{ fb.comment[:50] }}{{ '...' if fb.comment|length > 50 else '' }}</td>
+                        <td>{{ fb.date.strftime('%Y-%m-%d') if fb.date else 'N/A' }}</td>
+                      </tr>
+                      {% else %}
+                      <tr>
+                        <td colspan="5" class="text-center text-muted">No feedback yet</td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
