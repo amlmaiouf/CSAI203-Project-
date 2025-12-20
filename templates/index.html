@@ -6,6 +6,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    
 
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='fonts/icomoon/style.css') }}">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery-ui.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.theme.default.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.fancybox.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-datepicker.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='fonts/flaticon/font/flaticon.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/aos.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+
+
+
   <link rel="stylesheet" href="fonts/icomoon/style.css">
 
   <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -55,7 +72,7 @@
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
                 <li><a href="index.html" class="active nav-link">Home</a></li>
                 <li class="has-children">
-                  <a href="services.html" class="nav-link">Services</a>
+                  <a href="/services" class="nav-link">Services</a>
                   <ul class="dropdown">
                     <li><a href="NurseRequest.html" class="nav-link">Nurse Request</a></li>
                     <li><a href="DoctorCheckup.html" class="nav-link">Doctor Checkup</a></li>
@@ -98,7 +115,7 @@
 
 
 
-    <div class="slide-item overlay" style="background-image: url('images/slider-1.jpg')">
+    <div class="slide-item overlay" style="background-image: url('{{ url_for('static', filename='images/slider-1.jpg') }}')">
       <div class="container">
         <div class="row">
           <div class="col-lg-6 align-self-center">
@@ -115,7 +132,7 @@
       <div class="d-lg-flex align-items-center w-100">
         <div class="d-flex pagination-item  h-100">
           <span class="icon-wrap">
-            <img src="images/svg/svg/001-elderly.svg" alt="Image" class="img-fluid">
+            <img src="{{ url_for('static', filename='images/svg/svg/001-elderly.svg') }}" alt="Image" class="img-fluid">
           </span>
           <div>
             <span class="subheading">Try Our Services</span>
@@ -125,7 +142,7 @@
         </div>
         <div class="d-flex pagination-item h-100">
           <span class="icon-wrap">
-            <img src="images/svg/svg/002-elderly-1.svg" alt="Image" class="img-fluid">
+            <img src="{{ url_for('static', filename='images/svg/svg/002-elderly-1.svg') }}" alt="Image" class="img-fluid">
           </span>
           <div>
             <span class="subheading">Try Our Services</span>
@@ -135,7 +152,7 @@
         </div>
         <div class="d-flex pagination-item h-100">
           <span class="icon-wrap">
-            <img src="images/svg/svg/003-rocking-chair.svg" alt="Image" class="img-fluid">
+            <img src="{{ url_for('static', filename='images/svg/svg/003-rocking-chair.svg') }}" alt="Image" class="img-fluid">
           </span>
           <div>
             <span class="subheading">Try Our Services</span>
@@ -152,7 +169,7 @@
         <div class="row">
           <div class="col-6 col-sm-6 col-md-6 mb-4 mb-lg-0 col-lg-3">
             <div class="service" style="border:1px solid #ddd;">
-              <a href="services.html" class="d-block"><img src="images/survey_8523686.png" alt="Image" class="img-fluid"></a>
+              <a href="services.html" class="d-block"><img src="{{ url_for('static', filename='images/survey_8523686.png') }}" alt="Image" class="img-fluid"></a>
               <div class="service-inner">
                 <h3>View All Services</h3>
                 <p></p>
@@ -161,7 +178,7 @@
           </div>
           <div class="col-6 col-sm-6 col-md-6 mb-4 mb-lg-0 col-lg-3">
             <div class="service" style="border:1px solid #ddd;">
-              <a href="NurseRequest.html" class="d-block"><img src="images/_6775000.png" alt="Image" class="img-fluid"></a>
+              <a href="NurseRequest.html" class="d-block"><img src="{{ url_for('static', filename='images/_6775000.png') }}" alt="Image" class="img-fluid"></a>
               <div class="service-inner">
                 <h3>Nurse Request</h3>
                 <p></p>
@@ -170,7 +187,7 @@
           </div>
           <div class="col-6 col-sm-6 col-md-6 mb-4 mb-lg-0 col-lg-3">
             <div class="service" style="border:1px solid #ddd;">
-              <a href="DoctorCheckup.html" class="d-block"><img src="images/doctor_6870436.png" alt="Image" class="img-fluid"></a>
+              <a href="DoctorCheckup.html" class="d-block"><img src="{{ url_for('static', filename='images/doctor_6870436.png') }}" alt="Image" class="img-fluid"></a>
               <div class="service-inner">
                 <h3>Doctor Checkup</h3>
                 <p></p>
@@ -179,7 +196,7 @@
           </div>
           <div class="col-6 col-sm-6 col-md-6 mb-4 mb-lg-0 col-lg-3">
             <div class="service" style="border:1px solid #ddd;">
-              <a href="CarWashing.html" class="d-block"><img src="images/6872122.png" alt="Image" class="img-fluid"></a>
+              <a href="CarWashing.html" class="d-block"><img src="{{ url_for('static', filename='images/6872122.png') }}" alt="Image" class="img-fluid"></a>
               <div class="service-inner">
                 <h3>Car Washing</h3>
                 <p></p>
@@ -201,7 +218,7 @@
 
             <div class="row">
               <div class="col-lg-6">
-                <img src="images/img_3.jpg" alt="Image" class="img-fluid">
+                <img src="{{ url_for('static', filename='images/img_3.jpg') }}" alt="Image" class="img-fluid">
               </div>
               <div class="col-lg-6">
                 <ul class="list-unstyled ul-check primary">
@@ -219,14 +236,14 @@
             <div class="text text-center">
               <h3>We provide many services</h3>
             </div>
-            <div class="img-bg" style="background-image: url('images/img_2.jpg')"></div>
+            <div class="img-bg" style="background-image: url('{{ url_for('static', filename='images/img_2.jpg') }}')"></div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="cover overlay" style="background-image: url('images/slider-2.jpg')">
+  <div class="cover overlay" style="background-image: url('{{ url_for('static', filename='images/slider-2.jpg') }}')">
     <div class="container">
       <div class="row ">
         <div class="col-lg-7 mx-auto text-center align-self-center">
@@ -235,7 +252,7 @@
             <div class="col-lg-4">
               <div class="feature">
                 <span class="img-wrap">
-                  <img src="images/svg/svg/006-elderly-3.svg" alt="Image" class="img-fluid">
+                  <img src="{{ url_for('static', filename='images/svg/svg/006-elderly-3.svg') }}" alt="Image" class="img-fluid">
                 </span>
                 <h3>Expert Doctors</h3>
               </div>
@@ -243,7 +260,7 @@
             <div class="col-lg-4">
               <div class="feature">
                 <span class="img-wrap">
-                  <img src="images/svg/svg/005-elderly-2.svg" alt="Image" class="img-fluid">
+                  <img src="{{ url_for('static', filename='images/svg/svg/005-elderly-2.svg') }}" alt="Image" class="img-fluid">
                 </span>
                 <h3>Expert Nursing Staff</h3>
               </div>
@@ -251,7 +268,7 @@
             <div class="col-lg-4">
               <div class="feature">
                 <span class="img-wrap">
-                  <img src="images/svg/svg/004-nurse.svg" alt="Image" class="img-fluid">
+                  <img src="{{ url_for('static', filename='images/svg/svg/004-nurse.svg') }}" alt="Image" class="img-fluid">
                 </span>
                 <h3>Expert Staff</h3>
               </div>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - Elderly Care Services</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/aos.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='fonts/icomoon/style.css') }}">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-navbar py-3" role="banner">
+    <div class="container">
+      <div class="row align-items-center">
+
+        <div class="col-6 col-xl-2">
+          <h1 class="mb-0 site-logo">
+            <a href="/services" class="text-black h2 mb-0">ElderlyCare</a>
+          </h1>
+        </div>
+
+        <div class="col-12 col-md-10 d-none d-xl-block">
+          <nav class="site-navigation position-relative text-right" role="navigation">
+            <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
+              <li><a href="/services">Services</a></li>
+              <li class="active"><a href="/about">About</a></li>
+              <li><a href="/contact">Contact</a></li>
+            </ul>
+          </nav>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <div class="site-wrap">
+    <div class="site-section">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-md-7">
+            <h2 class="text-primary mb-4">About Elderly Care Services</h2>
+            <p>
+              We are a group of dedicated students passionate about improving the lives of the elderly. Our goal is to
+              provide accessible and reliable services such as nursing, medical checkups, companionship, and daily
+              assistance.
+            </p>
+            <p>
+              Our mission is to create a system where the elderly can request help easily and receive professional,
+              compassionate support.
+            </p>
+          </div>
+
+          <div class="col-md-5">
+            <img src="{{ url_for('static', filename='images/img_3_sq.jpg') }}"
+                 alt="Elderly care"
+                 class="img-fluid rounded shadow">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4 text-center">
+            <h4 class="text-primary">Our Mission</h4>
+            <p>To provide convenient, trustworthy, and high-quality care services to the elderly.</p>
+          </div>
+
+          <div class="col-md-4 text-center">
+            <h4 class="text-primary">Our Vision</h4>
+            <p>A world where older adults feel supported, valued, and independent.</p>
+          </div>
+
+          <div class="col-md-4 text-center">
+            <h4 class="text-primary">Our Values</h4>
+            <p>Respect, empathy, responsibility, and innovation in elderly care.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>  
+</body>
+</html>

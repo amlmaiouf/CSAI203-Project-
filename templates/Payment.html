@@ -191,6 +191,7 @@
 
 <body>
 
+
 <div class="page-header">
   <div class="container">
     <h1><i class="fa fa-credit-card me-3"></i>Payment</h1>
@@ -206,32 +207,32 @@
         
         <div class="order-item">
           <span class="label">Service</span>
-          <span class="value" id="serviceName">-</span>
+         <span class="value"> {{order.type }} </span>
         </div>
         
         <div class="order-item">
           <span class="label">Customer Name</span>
-          <span class="value" id="fullName">-</span>
+          <span class="value"> {{order.name }} </span>
         </div>
         
         <div class="order-item">
           <span class="label">Phone Number</span>
-          <span class="value" id="phone">-</span>
+                 <span class="value"> {{order.phone }} </span>
         </div>
 
         <div class="order-item">
           <span class="label">Email</span>
-          <span class="value" id="email">-</span>
+        <span class="value"> {{order.email }} </span>   
         </div>
 
         <div class="order-item">
           <span class="label">Date</span>
-          <span class="value" id="date">-</span>
+          <span class="value"> {{order.date }} </span>
         </div>
 
         <div class="total-row d-flex justify-content-between align-items-center">
           <span class="label">Total Amount</span>
-          <span class="value" id="totalPrice">500 EGP</span>
+             <span class="value"> {{order.price }} </span>
         </div>
       </div>
     </div>
@@ -242,7 +243,7 @@
           <h4><i class="fa fa-lock me-2"></i>Secure Payment</h4>
         </div>
         <div class="card-body">
-          <form action="Confirmation.html" method="get">
+          <form action="{{ url_for('housekeeping.confirmation') }}" method="post">
             <input type="hidden" name="type" value="order">
 
             <h5 class="mb-4">Select Payment Method</h5>
@@ -335,7 +336,7 @@
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script>
+<script>/*<!--
   const params = new URLSearchParams(window.location.search);
   
   document.getElementById("serviceName").textContent = params.get("serviceName") || "Service";
@@ -350,7 +351,7 @@
   else if (duration === "12hours") price = "1200 EGP";
   else if (duration === "24hours") price = "2000 EGP";
   document.getElementById("totalPrice").textContent = price;
-
+  -->*/
   document.querySelectorAll('.payment-method').forEach(method => {
     method.addEventListener('click', function() {
       document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('selected'));
