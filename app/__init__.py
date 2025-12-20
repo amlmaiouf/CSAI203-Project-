@@ -1,33 +1,10 @@
 from flask import Flask
 from flask_login import LoginManager
 from werkzeug.security import generate_password_hash
-import pyodbc
+from app.database import get_db_connection, DB_CONFIG
 
 
 login_manager = LoginManager()
-
-
-DB_CONFIG = {
-    'server': r'LAPTOP-CIOQ170I\SQLEXPRESS',
-    'database': 'elderly_care_system',
-    'driver': '{ODBC Driver 17 for SQL Server}',
-    'trusted_connection': 'yes',
-}
-
-def get_db_connection():
-    try:
-        conn_str = (
-            f"DRIVER={DB_CONFIG['driver']};"
-            f"SERVER={DB_CONFIG['server']};"
-            f"DATABASE={DB_CONFIG['database']};"
-            f"Trusted_Connection=yes;"
-        )
-
-        conn = pyodbc.connect(conn_str)
-        return conn
-    except pyodbc.Error as e:
-        print(f"Database connection error: {e}")
-        return None
 
 
 def initialize_admin_user():
@@ -133,10 +110,12 @@ def create_app():
     from app.controllers.main_controller import main_bp
     from app.controllers.admin_controller import admin_bp
     from app.controllers.auth_controller import auth_bp
+    from app.controllers.housekeeping_controller import housekeeping_bp
 
     app.register_blueprint(main_bp)
     app.register_blueprint(admin_bp, url_prefix='/admin')
     app.register_blueprint(auth_bp, url_prefix='/auth')
+    app.register_blueprint(housekeeping_bp)
 
 
     with app.app_context():

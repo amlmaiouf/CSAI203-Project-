@@ -1,6 +1,6 @@
 import logging
 from flask_login import UserMixin
-from app import get_db_connection
+from app.database import get_db_connection
 
 
 class User(UserMixin):
