@@ -1,16 +1,11 @@
-"""
-User Model - Elderly Care System
-Uses pyodbc to connect to SQL Server
-"""
-
+import logging
 from flask_login import UserMixin
 from app import get_db_connection
 
 
 class User(UserMixin):
-    """User Model for authentication and user management"""
-    
-    def __init__(self, user_id=None, name=None, email=None, password=None, 
+
+    def __init__(self, user_id=None, name=None, email=None, password=None,
                  role='Elderly', phone_number=None, address=None, profile=None,
                  created_at=None, updated_at=None):
         self.user_id = user_id
@@ -23,22 +18,18 @@ class User(UserMixin):
         self.profile = profile
         self.created_at = created_at
         self.updated_at = updated_at
-    
+
     def get_id(self):
-        """Required by Flask-Login"""
         return str(self.user_id)
-    
+
     def is_admin(self):
-        """Check if user is an admin"""
         return self.role == 'Admin'
-    
+
     def is_employee(self):
-        """Check if user is an employee"""
         return self.role in ['Staff', 'Doctor', 'Caregiver']
-    
+
     @staticmethod
     def get_by_id(user_id):
-        """Get user by ID"""
         conn = get_db_connection()
         if not conn:
             return None
@@ -62,10 +53,9 @@ class User(UserMixin):
             return None
         finally:
             conn.close()
-    
+
     @staticmethod
     def get_by_email(email):
-        """Get user by email"""
         conn = get_db_connection()
         if not conn:
             return None
@@ -89,10 +79,9 @@ class User(UserMixin):
             return None
         finally:
             conn.close()
-    
+
     @staticmethod
     def get_all():
-        """Get all users"""
         conn = get_db_connection()
         if not conn:
             return []
@@ -116,17 +105,16 @@ class User(UserMixin):
             return users
         finally:
             conn.close()
-    
+
     @staticmethod
     def get_employees():
-        """Get all employees (Staff, Doctor, Caregiver)"""
         conn = get_db_connection()
         if not conn:
             return []
         try:
             cursor = conn.cursor()
             cursor.execute("""
-                SELECT * FROM [User] 
+                SELECT * FROM [User]
                 WHERE role IN ('Staff', 'Doctor', 'Caregiver')
                 ORDER BY role, name
             """)
@@ -147,35 +135,34 @@ class User(UserMixin):
             return employees
         finally:
             conn.close()
-    
+
     @staticmethod
     def count_by_role(role):
-        """Count users by role"""
         conn = get_db_connection()
         if not conn:
             return 0
         try:
             cursor = conn.cursor()
             cursor.execute("SELECT COUNT(*) FROM [User] WHERE role = ?", (role,))
-            return cursor.fetchone()[0]
+            result = cursor.fetchone()
+            return result[0] if result else 0
         finally:
             conn.close()
-    
+
     @staticmethod
     def count_all():
-        """Count all users"""
         conn = get_db_connection()
         if not conn:
             return 0
         try:
             cursor = conn.cursor()
             cursor.execute("SELECT COUNT(*) FROM [User]")
-            return cursor.fetchone()[0]
+            result = cursor.fetchone()
+            return result[0] if result else 0
         finally:
             conn.close()
-    
+
     def save(self):
-        """Insert new user"""
         conn = get_db_connection()
         if not conn:
             return False
@@ -184,22 +171,21 @@ class User(UserMixin):
             cursor.execute("""
                 INSERT INTO [User] (name, email, password, role, phone_number, address)
                 VALUES (?, ?, ?, ?, ?, ?)
-            """, (self.name, self.email, self.password, self.role, 
+            """, (self.name, self.email, self.password, self.role,
                   self.phone_number, self.address))
             conn.commit()
-            
-            # Get the inserted ID
+
             cursor.execute("SELECT @@IDENTITY")
-            self.user_id = cursor.fetchone()[0]
+            result = cursor.fetchone()
+            self.user_id = result[0] if result else None
             return True
         except Exception as e:
-            print(f"Error saving user: {e}")
+            logging.error(f"Error saving user: {e}")
             return False
         finally:
             conn.close()
-    
+
     def update(self):
-        """Update existing user"""
         conn = get_db_connection()
         if not conn:
             return False
@@ -207,29 +193,28 @@ class User(UserMixin):
             cursor = conn.cursor()
             if self.password:
                 cursor.execute("""
-                    UPDATE [User] 
+                    UPDATE [User]
                     SET name=?, email=?, password=?, role=?, phone_number=?, address=?, updated_at=GETDATE()
                     WHERE user_id=?
-                """, (self.name, self.email, self.password, self.role, 
+                """, (self.name, self.email, self.password, self.role,
                       self.phone_number, self.address, self.user_id))
             else:
                 cursor.execute("""
-                    UPDATE [User] 
+                    UPDATE [User]
                     SET name=?, email=?, role=?, phone_number=?, address=?, updated_at=GETDATE()
                     WHERE user_id=?
-                """, (self.name, self.email, self.role, 
+                """, (self.name, self.email, self.role,
                       self.phone_number, self.address, self.user_id))
             conn.commit()
             return True
         except Exception as e:
-            print(f"Error updating user: {e}")
+            logging.error(f"Error updating user: {e}")
             return False
         finally:
             conn.close()
-    
+
     @staticmethod
     def delete(user_id):
-        """Delete user by ID"""
         conn = get_db_connection()
         if not conn:
             return False
@@ -239,10 +224,10 @@ class User(UserMixin):
             conn.commit()
             return True
         except Exception as e:
-            print(f"Error deleting user: {e}")
+            logging.error(f"Error deleting user: {e}")
             return False
         finally:
             conn.close()
-    
+
     def __repr__(self):
         return f'<User {self.name} ({self.role})>'

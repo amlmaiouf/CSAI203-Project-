@@ -1,8 +1,3 @@
-"""
-Controllers Package - Elderly Care System
-Exports all controller blueprints
-"""
-
 from app.controllers.main_controller import main_bp
 from app.controllers.admin_controller import admin_bp
 from app.controllers.auth_controller import auth_bp

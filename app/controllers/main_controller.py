@@ -1,9 +1,3 @@
-"""
-Main Controller - Elderly Care System
-Handles public pages and user-facing functionality
-Uses original HTML templates
-"""
-
 from flask import Blueprint, render_template, redirect, url_for, flash, request
 from flask_login import login_required, current_user
 from app.models.service import Service
@@ -15,50 +9,43 @@ main_bp = Blueprint('main', __name__)
 
 @main_bp.route('/')
 def index():
-    """Home page - Original template"""
     return render_template('index.html')
 
 
 @main_bp.route('/services')
 def services():
-    """Services listing page - Original template"""
     return render_template('services.html')
 
 
 @main_bp.route('/contact')
 def contact():
-    """Contact page - Original template"""
     return render_template('contact.html')
 
 
 @main_bp.route('/profile', methods=['GET', 'POST'])
 @login_required
 def profile():
-    """User profile page"""
     if request.method == 'POST':
-        # Update user profile
         user = User.get_by_id(current_user.user_id)
         if user:
             user.name = request.form.get('name', user.name)
             user.phone_number = request.form.get('phone', user.phone_number)
             user.address = request.form.get('address', user.address)
-            user.password = None  # Don't update password
-            
+            user.password = None
+
             if user.update():
                 flash('Profile updated successfully!', 'success')
             else:
                 flash('Failed to update profile.', 'error')
-        
+
         return redirect(url_for('main.profile'))
-    
-    # Get user's orders
+
     orders = get_user_orders(current_user.user_id)
-    
+
     return render_template('profile.html', orders=orders)
 
 
 def get_user_orders(user_id):
-    """Get orders for a specific user"""
     conn = get_db_connection()
     if not conn:
         return []
@@ -83,47 +70,38 @@ def get_user_orders(user_id):
         conn.close()
 
 
-# ==================== Service Detail Pages ====================
-
 @main_bp.route('/service/doctor')
 def doctor_service():
-    """Doctor checkup service page"""
     return render_template('DoctorCheckup.html')
 
 
 @main_bp.route('/service/nurse')
 def nurse_service():
-    """Nurse request service page"""
     return render_template('NurseRequest.html')
 
 
 @main_bp.route('/service/car-washing')
 def car_washing_service():
-    """Car washing service page"""
     return render_template('CarWashing.html')
 
 
 @main_bp.route('/service/companionship')
 def companionship_service():
-    """Companionship service page"""
     return render_template('NeedCompany.html')
 
 
 @main_bp.route('/feedback')
 def feedback_page():
-    """Feedback page"""
     return render_template('Feedback.html')
 
 
 @main_bp.route('/payment')
 @login_required
 def payment():
-    """Payment page"""
     return render_template('Payment.html')
 
 
 @main_bp.route('/confirmation')
 @login_required
 def confirmation():
-    """Order confirmation page"""
     return render_template('Confirmation.html')

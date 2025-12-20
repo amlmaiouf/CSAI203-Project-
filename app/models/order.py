@@ -1,18 +1,13 @@
-"""
-Order Model - Elderly Care System
-Uses pyodbc to connect to SQL Server
-"""
-
+import logging
 from app import get_db_connection
 
 
 class Order:
-    """Order Model for tracking service requests"""
-    
+
     VALID_STATUSES = ['Pending', 'Confirmed', 'In Progress', 'Completed', 'Cancelled']
-    
+
     def __init__(self, order_id=None, user_id=None, order_date=None, status='Pending',
-                 total_price=0, delivery_address=None, notes=None, 
+                 total_price=0, delivery_address=None, notes=None,
                  created_at=None, updated_at=None):
         self.order_id = order_id
         self.user_id = user_id
@@ -23,13 +18,11 @@ class Order:
         self.notes = notes
         self.created_at = created_at
         self.updated_at = updated_at
-        # For joined data
         self.customer_name = None
         self.customer_email = None
-    
+
     @staticmethod
     def get_by_id(order_id):
-        """Get order by ID"""
         conn = get_db_connection()
         if not conn:
             return None
@@ -60,10 +53,9 @@ class Order:
             return None
         finally:
             conn.close()
-    
+
     @staticmethod
     def get_all():
-        """Get all orders"""
         conn = get_db_connection()
         if not conn:
             return []
@@ -94,10 +86,9 @@ class Order:
             return orders
         finally:
             conn.close()
-    
+
     @staticmethod
     def get_recent(limit=5):
-        """Get recent orders"""
         conn = get_db_connection()
         if not conn:
             return []
@@ -129,40 +120,98 @@ class Order:
             return orders
         finally:
             conn.close()
-    
+
     @staticmethod
     def count_all():
-        """Count all orders"""
         conn = get_db_connection()
         if not conn:
             return 0
         try:
             cursor = conn.cursor()
             cursor.execute("SELECT COUNT(*) FROM [Order]")
-            return cursor.fetchone()[0]
+            result = cursor.fetchone()
+            return result[0] if result else 0
         finally:
             conn.close()
-    
+
     @staticmethod
     def count_by_status(status):
-        """Count orders by status"""
         conn = get_db_connection()
         if not conn:
             return 0
         try:
             cursor = conn.cursor()
             cursor.execute("SELECT COUNT(*) FROM [Order] WHERE status = ?", (status,))
-            return cursor.fetchone()[0]
+            result = cursor.fetchone()
+            return result[0] if result else 0
         finally:
             conn.close()
-    
+
+    def save(self):
+        conn = get_db_connection()
+        if not conn:
+            return False
+        try:
+            cursor = conn.cursor()
+            cursor.execute("""
+                INSERT INTO [Order] (user_id, order_date, status, total_price, delivery_address, notes)
+                VALUES (?, ?, ?, ?, ?, ?)
+            """, (self.user_id, self.order_date, self.status, self.total_price,
+                  self.delivery_address, self.notes))
+            conn.commit()
+
+            cursor.execute("SELECT @@IDENTITY")
+            result = cursor.fetchone()
+            self.order_id = result[0] if result else None
+            return True
+        except Exception as e:
+            logging.error(f"Error saving order: {e}")
+            return False
+        finally:
+            conn.close()
+
+    def update(self):
+        conn = get_db_connection()
+        if not conn:
+            return False
+        try:
+            cursor = conn.cursor()
+            cursor.execute("""
+                UPDATE [Order]
+                SET user_id=?, order_date=?, status=?, total_price=?, delivery_address=?, notes=?, updated_at=GETDATE()
+                WHERE order_id=?
+            """, (self.user_id, self.order_date, self.status, self.total_price,
+                  self.delivery_address, self.notes, self.order_id))
+            conn.commit()
+            return True
+        except Exception as e:
+            logging.error(f"Error updating order: {e}")
+            return False
+        finally:
+            conn.close()
+
+    @staticmethod
+    def delete(order_id):
+        conn = get_db_connection()
+        if not conn:
+            return False
+        try:
+            cursor = conn.cursor()
+            cursor.execute("DELETE FROM [Order] WHERE order_id = ?", (order_id,))
+            conn.commit()
+            return True
+        except Exception as e:
+            logging.error(f"Error deleting order: {e}")
+            return False
+        finally:
+            conn.close()
+
     def __repr__(self):
         return f'<Order {self.order_id}>'
 
 
 class OrderService:
-    """OrderService Model - Junction table for Order and Service"""
-    
+
     def __init__(self, order_service_id=None, order_id=None, service_id=None,
                  quantity=1, price=0, created_at=None):
         self.order_service_id = order_service_id
@@ -174,13 +223,12 @@ class OrderService:
 
 
 class Payment:
-    """Payment Model"""
-    
+
     VALID_STATUSES = ['Pending', 'Paid', 'Failed', 'Refunded']
     VALID_METHODS = ['Credit Card', 'Debit Card', 'Cash', 'Bank Transfer']
-    
+
     def __init__(self, payment_id=None, order_id=None, payment_status='Pending',
-                 payment_method=None, payment_date=None, amount=0, 
+                 payment_method=None, payment_date=None, amount=0,
                  transaction_id=None, created_at=None):
         self.payment_id = payment_id
         self.order_id = order_id
@@ -193,10 +241,9 @@ class Payment:
 
 
 class Appointment:
-    """Appointment Model"""
-    
+
     VALID_STATUSES = ['Scheduled', 'Confirmed', 'In Progress', 'Completed', 'Cancelled', 'No Show']
-    
+
     def __init__(self, appointment_id=None, user_id=None, service_id=None,
                  staff_id=None, appointment_date=None, status='Scheduled',
                  location=None, notes=None, created_at=None, updated_at=None):
