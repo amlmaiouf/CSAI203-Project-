@@ -12,233 +12,155 @@
   <link rel="stylesheet" href="css/jquery-ui.css">
   <link rel="stylesheet" href="css/owl.carousel.min.css">
   <link rel="stylesheet" href="css/owl.theme.default.min.css">
-  <link rel="stylesheet" href="css/owl.theme.default.min.css">
-
   <link rel="stylesheet" href="css/jquery.fancybox.min.css">
-
   <link rel="stylesheet" href="css/bootstrap-datepicker.css">
-
   <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
-
   <link rel="stylesheet" href="css/aos.css">
-
   <link rel="stylesheet" href="css/style.css">
 
+  <style>
+    /* Tab styles */
+    .tab-button {
+      flex: 1;
+      text-align: center;
+      padding: 10px;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: 0.3s;
+    }
+    .tab-button.active {
+      border-bottom-color: #007bff;
+      font-weight: bold;
+    }
+    .tab-content {
+      display: none;
+      margin-top: 20px;
+    }
+    .tab-content.active {
+      display: block;
+    }
+  </style>
 </head>
-<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+<body>
 
+<div class="site-wrap">
 
-  <div class="site-wrap">
-
-    <div class="site-mobile-menu site-navbar-target">
-      <div class="site-mobile-menu-header">
-        <div class="site-mobile-menu-close mt-3">
-          <span class="icon-close2 js-menu-toggle"></span>
+  <!-- Header -->
+  <header class="site-navbar light js-sticky-header site-navbar-target" role="banner">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-6 col-xl-2">
+          <div class="mb-0 site-logo"><a href="index.html" class="mb-0">Elderly Care</a></div>
+        </div>
+        <div class="col-12 col-md-10 d-none d-xl-block">
+          <nav class="site-navigation position-relative text-right" role="navigation">
+            <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+              <li><a href="index.html" class="nav-link">Home</a></li>
+              <li><a href="contact.html" class="nav-link">Contact</a></li>
+              <li class="ml-3"><a href="registration.html" class="btn btn-primary text-white py-2 px-4">Register</a></li>
+            </ul>
+          </nav>
         </div>
       </div>
-      <div class="site-mobile-menu-body"></div>
     </div>
+  </header>
 
-    
-    <header class="site-navbar light js-sticky-header site-navbar-target" role="banner">
-
-      <div class="container">
-        <div class="row align-items-center">
-
-          <div class="col-6 col-xl-2">
-            <div class="mb-0 site-logo"><a href="index.html" class="mb-0">Elderly Care<span class="text-primary"></span> </a></div>
-          </div>
-
-          <div class="col-12 col-md-10 d-none d-xl-block">
-            <nav class="site-navigation position-relative text-right" role="navigation">
-
-              <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                <li><a href="index.html" class="nav-link">Home</a></li>
-                <li class="has-children">
-                  <a href="services.html" class="nav-link">Services</a>
-                  <ul class="dropdown">
-                    <li><a href="NurseRequest.html" class="nav-link">Nurse Request</a></li>
-                    <li><a href="DoctorCheckup.html" class="nav-link">Doctor Checkup</a></li>
-                    <li><a href="NeedCompany.html" class="nav-link">Need Company?</a></li>
-                    <li><a href="CarWashing.html" class="nav-link">Car Washing</a></li>
-                    <li class="has-children">
-                      <a href="#">More Links</a>
-                      <ul class="dropdown">
-                        <li><a href="#">Menu One</a></li>
-                        <li><a href="#">Menu Two</a></li>
-                        <li><a href="#">Menu Three</a></li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-
-                <!--<li><a href="about.html" class="nav-link">About</a></li>-->
-                <li><a href="contact.html" class="nav-link">Contact</a></li>
-
-                <li class="social"><a href="#contact-section" class="nav-link"><span class="icon-facebook"></span></a></li>
-                <li class="social"><a href="#contact-section" class="nav-link"><span class="icon-twitter"></span></a></li>
-                <li class="social"><a href="#contact-section" class="nav-link"><span class="icon-linkedin"></span></a></li>
-                <li class="ml-3"> <a href="registration.html" class="btn btn-primary text-white py-2 px-4">Register</a></li>
-                <li class="ml-3"><a href="user_profile.html" class="btn btn-outline-primary py-2 px-4">Profile</a></li>
-              </ul>
-            </nav>
-          </div>
-
-
-          <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle float-right"><span class="icon-menu h3 text-white"></span></a></div>
-
-        </div>
-      </div>
-
-    </header>
-
-
-    <!-- MAIN -->
-
-   
- <div class="site-section">
+  <!-- MAIN SECTION -->
+  <div class="site-section">
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-12 col-md-6 col-lg-5">
+          <div class="card shadow p-4">
 
-            <div class="tab-wrapper">
-               
-            <input type="radio" name="Tab" id="signinTab" checked hidden>
-            <input type="radio" name="Tab" id="signupTab" hidden>
-            
-            <div class="card shadow">
-            <div class="card-body p-4">
-             
-  
-              <div class="d-flex mb-4">
-             
-                <label for="signinTab" class="flex-fill text-center p-2" >Sign In</label>
-                <label for="signupTab" class="flex-fill text-center p-2">Sign Up</label>
-              </div>
-  
-              <div class="tab-content">
-
-                <div class="form-tab" id="signin">
-                    <form>
-                        <div class="mb-3">
-                        <label for="signinEmail" class="form-label">Email Address</label>
-                        <input type="email" class="form-control" id="signinEmail" placeholder="Enter email address">
-                        </div>
-                        <div class="mb-3">
-                        <label for="signinpPssword" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="signinPassword" placeholder="Enter password">
-                        </div>
-                        <div class="d-grid">
-                        <button type="submit" class="btn btn-primary">Sign In</button>
-                        </div>
-                    </form>
-                </div>
-
-                <div class="form-tab" id="signup">
-                  <form>
-                    <div class="mb-3">
-                      <label for="signupName" class="form-label">Name</label>
-                      <input type="text" class="form-control" id="signupName" placeholder="Enter your name">
-                    </div>
-                    <div class="mb-3">
-                        <label for="signupAge" class="form-label">Age</label>
-                        <input type="number" class="form-control" id="signupNAge" placeholder="Enter your age">
-                      </div>
-                    <div class="mb-3">
-                      <label for="signupEmail" class="form-label">Email Address</label>
-                      <input type="email" class="form-control" id="signupEmail" placeholder="Enter email address">
-                    </div>
-                    <div class="mb-3">
-                      <label for="signupPassword" class="form-label">Password</label>
-                      <input type="password" class="form-control" id="signupPassword" placeholder="Password">
-                    </div>
-                    <div class="d-grid">
-                      <button type="submit" class="btn btn-primary">Sign Up</button>
-                    </div>
-                  </form>
-                </div>
+            <!-- Tabs -->
+            <div class="d-flex mb-3">
+              <div class="tab-button active" id="signin-tab">Sign In</div>
+              <div class="tab-button" id="signup-tab">Sign Up</div>
             </div>
-  
+
+            <!-- Sign In Form -->
+            <div class="tab-content active" id="signin-form">
+              <form method="POST" action="/login">
+                <div class="mb-3">
+                  <label for="signinEmail" class="form-label">Email Address</label>
+                  <input type="email" class="form-control" id="signinEmail" name="email" placeholder="Enter email address" required>
+                </div>
+                <div class="mb-3">
+                  <label for="signinPassword" class="form-label">Password</label>
+                  <input type="password" class="form-control" id="signinPassword" name="password" placeholder="Enter password" required>
+                </div>
+                <div class="d-grid">
+                  <button type="submit" class="btn btn-primary">Sign In</button>
+                </div>
+              </form>
             </div>
+
+            <!-- Sign Up Form -->
+            <div class="tab-content" id="signup-form">
+              <form method="POST" action="/register">
+                <div class="mb-3">
+                  <label for="signupName" class="form-label">Name</label>
+                  <input type="text" class="form-control" id="signupName" name="name" placeholder="Enter your name" required>
+                </div>
+                <div class="mb-3">
+                  <label for="signupAge" class="form-label">Age</label>
+                  <input type="number" class="form-control" id="signupAge" name="age" placeholder="Enter your age" required>
+                </div>
+                <div class="mb-3">
+                  <label for="signupEmail" class="form-label">Email Address</label>
+                  <input type="email" class="form-control" id="signupEmail" name="email" placeholder="Enter email address" required>
+                </div>
+                <div class="mb-3">
+                  <label for="signupPassword" class="form-label">Password</label>
+                  <input type="password" class="form-control" id="signupPassword" name="password" placeholder="Password" required>
+                </div>
+                <div class="d-grid">
+                  <button type="submit" class="btn btn-primary">Sign Up</button>
+                </div>
+              </form>
+            </div>
+
           </div>
-        </div>
         </div>
       </div>
     </div>
-   </div>
-  
-    <style>
-    .form-tab { display: none; }
-        
-    #signinTab:checked ~ .card .tab-content #signin { display: block; }
-    
-    #signupTab:checked ~ .card .tab-content #signup{ display: block; }
+  </div>
 
-    #signinTab:checked ~ .card .d-flex label[for="signinTab"] { border-bottom-color: #007bff; }
-    #signupTab:checked ~ .card .d-flex label[for="signupTab"] { border-bottom-color: #007bff; }
- 
-    .d-flex label {
-    cursor: pointer;
-    transition: 0.3s;
-    border-bottom: 2px solid transparent;
-    }
-
-    .d-flex label { transition: 0.3s; }
-
-    .tab-wrapper {
-    position: relative;
-    }
-
-    .tab-label {
-    cursor: pointer;
-    transition: 0.3s;
-    border-bottom: 2px solid transparent;
-    }
-
-    </style>
-
-
+  <!-- Footer -->
   <div class="site-footer bg-light">
     <div class="container">
       <div class="row">
         <div class="col-lg-4">
           <h2 class="footer-heading mb-4">About</h2>
           <p>We are a group dedicating ourselves to helping the elderly community with ease.</p>
-          <div class="my-5 social">
-            <a href="#" class="pl-0 pr-3"><span class="icon-facebook"></span></a>
-            <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
-            <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
-            <a href="#" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
-          </div>
-        </div>
-        <div class="col-lg-8">
-          <div class="row">
-            <div class="col-lg-4">
-              <h2 class="footer-heading mb-4">Quick Links</h2>
-              <ul class="list-unstyled">
-                <li><a href="contact.html">Contact Us</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row text-center">
-        <div class="col-md-12">
-          <div class="border-top pt-5">
-            <p class="copyright"><small>
-              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-              Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
-              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></small></p>
-
-            </div>
-          </div>
-
         </div>
       </div>
     </div>
   </div>
 
 </div>
+
+<script>
+  // Tab switching
+  const signinTab = document.getElementById('signin-tab');
+  const signupTab = document.getElementById('signup-tab');
+  const signinForm = document.getElementById('signin-form');
+  const signupForm = document.getElementById('signup-form');
+
+  signinTab.addEventListener('click', () => {
+    signinTab.classList.add('active');
+    signupTab.classList.remove('active');
+    signinForm.classList.add('active');
+    signupForm.classList.remove('active');
+  });
+
+  signupTab.addEventListener('click', () => {
+    signupTab.classList.add('active');
+    signinTab.classList.remove('active');
+    signupForm.classList.add('active');
+    signinForm.classList.remove('active');
+  });
+</script>
 
 </body>
 </html>
