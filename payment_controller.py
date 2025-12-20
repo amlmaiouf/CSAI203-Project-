@@ -1,33 +1,30 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
-from Models.payment_model import Payment
+from models.payment_model import PaymentModel
 
-payment_bp = Blueprint("payment", __name__, url_prefix="/payment")
+payment_bp = Blueprint('payment', __name__, url_prefix='/payment')
+payment_model = PaymentModel()
 
-@payment_bp.route("/", methods=["GET", "POST"])
-def make_payment():
-    if request.method == "POST":
-        service_name = request.form.get("serviceName")
-        full_name = request.form.get("fullName")
-        phone = request.form.get("phone")
-        payment_method = request.form.get("paymentMethod")
-        card_number = request.form.get("cardNumber")
-        expiry_date = request.form.get("expiryDate")
-        cvv = request.form.get("cvv")
-        vodafone_number = request.form.get("vodafoneNumber")
+@payment_bp.route('/payment', methods=['GET', 'POST'])
+def payment():
+    if request.method == 'POST':
+        service_name = request.form.get('serviceName')
+        customer_name = request.form.get('fullName')
+        phone = request.form.get('phone')
+        email = request.form.get('email')
+        date = request.form.get('date')
+        duration = request.form.get('duration')
+        total_price = request.form.get('totalPrice')
+        payment_method = request.form.get('paymentMethod')
 
-        payment = Payment(
-            service_name=service_name,
-            full_name=full_name,
-            phone=phone,
-            payment_method=payment_method,
-            card_number=card_number,
-            expiry_date=expiry_date,
-            cvv=cvv,
-            vodafone_number=vodafone_number
+        if not (service_name and customer_name and payment_method):
+            flash('Please fill all required fields', 'danger')
+            return redirect(url_for('order.payment'))
+
+        payment_model.create_order(
+            service_name, customer_name, phone, email, date,
+            duration, total_price, payment_method
         )
+        flash('Your payment has been processed successfully!', 'success')
+        return redirect(url_for('order.payment'))
 
-        payment.save_to_csv()
-        flash("Payment saved successfully!", "success")
-        return redirect(url_for("payment.make_payment"))
-
-    return render_template("payment.html")
+    return render_template('payment.html')
