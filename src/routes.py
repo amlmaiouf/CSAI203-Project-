@@ -1,13 +1,23 @@
 from app import app
 from flask import render_template, request, redirect, url_for
-from db import fetch_services, fetch_service, create_appointment
+#from db import fetch_services, fetch_service, create_appointment
 from datetime import datetime
 
 @app.route('/')
 def home():
     # Redirect root URL to /services
-    return redirect(url_for('view_services'))
+    #return redirect(url_for('view_services'))
+    return render_template('index.html')
 
+@app.route("/services")
+def services():
+    return render_template('services.html')
+
+@app.route("/feedback")
+def feedback():
+     return render_template('Feedback.html')
+
+'''
 # FR2: Serve all available services
 @app.route('/services')
 def view_services():
@@ -53,36 +63,4 @@ def book_service(service_id):
         service=service,
         success=success,
         error_message=error_message
-    )
-# Static pages routes
-@app.route('/nurserequest')
-def nurse_request():
-    return render_template('NurseRequest.html')
-
-@app.route('/doctorcheckup')
-def doctor_checkup():
-    return render_template('DoctorCheckup.html')
-
-@app.route('/needcompany')
-def need_company():
-    return render_template('NeedCompany.html')
-
-@app.route('/carwashing')
-def car_washing():
-    return render_template('CarWashing.html')
-
-@app.route('/about')
-def about():
-    return render_template('about.html')
-
-@app.route('/contact')
-def contact():
-    return render_template('contact.html')
-
-@app.route('/registration')
-def registration():
-    return render_template('registration.html')
-
-@app.route('/user_profile')
-def user_profile():
-    return render_template('user_profile.html')
+    )'''

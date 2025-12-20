@@ -4,12 +4,12 @@ from datetime import datetime
 def get_db_connection():
     conn = pyodbc.connect(
         "Driver={SQL Server};"
-        "Server=MSI\\SQLEXPRESS;"
+        "Server=ASUS;"
         "Database=elderly_care_system;"
         "Trusted_Connection=yes;"
     )
     return conn
-
+'''
 # FR2: Fetch all available services
 def fetch_services():
     conn = get_db_connection()
@@ -60,3 +60,4 @@ def create_appointment(user_id, service_id, appointment_date, location):
               f'User {user_id} booked an appointment on {appointment_date}'))
     conn.commit()
     conn.close()
+    '''
