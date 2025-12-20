@@ -8,317 +8,77 @@
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="fonts/icomoon/style.css">
-  <link rel="stylesheet" href="css/style.css">
+  
+  <link rel="stylesheet" href="{{ url_for('static', filename='fonts/icomoon/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
   <style>
-    body {
-      font-family: 'Open Sans', sans-serif;
-      background-color: #f8f9fa;
-    }
+    body { font-family: 'Open Sans', sans-serif; background-color: #f8f9fa; }
+    
     .header-section {
       background: linear-gradient(135deg, #1a5276 0%, #2980b9 50%, #5dade2 100%);
-      position: relative;
-      color: white;
-      padding: 100px 0;
-      text-align: center;
-      overflow: hidden;
+      position: relative; color: white; padding: 100px 0; text-align: center; overflow: hidden;
     }
     .header-section::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
+      content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M25 30h10M30 25v10' stroke='%23fff' stroke-width='2' opacity='.15'/%3E%3Ccircle cx='30' cy='30' r='12' fill='none' stroke='%23fff' opacity='.1'/%3E%3C/svg%3E");
       background-size: 60px 60px;
     }
-    .header-section::after {
-      content: '\f0f1';
-      font-family: 'Font Awesome 6 Free';
-      font-weight: 900;
-      position: absolute;
-      right: 8%;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 180px;
-      opacity: 0.08;
-    }
-    .header-section h1, .header-section p {
-      position: relative;
-      z-index: 1;
-    }
-    .header-section h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 48px;
-      font-weight: 700;
-      margin-bottom: 15px;
-    }
-    .header-section p {
-      font-size: 18px;
-      opacity: 0.9;
-    }
-    .breadcrumb-nav {
-      background: #fff;
-      padding: 15px 0;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    }
-    .breadcrumb-nav a {
-      color: #007bff;
-      text-decoration: none;
-    }
-    .form-section, .service-info-section {
-      padding: 60px 0;
-    }
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 36px;
-      margin-bottom: 40px;
-      text-align: center;
-      color: #2d3436;
-    }
-    .section-title span {
-      color: #007bff;
-    }
-    .info-card {
-      background: #fff;
-      border: none;
-      border-radius: 20px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-      transition: all 0.4s ease;
-      height: 100%;
-      padding: 40px 30px;
-      text-align: center;
-    }
-    .info-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.12);
-    }
-    .info-card i {
-      font-size: 50px;
-      color: #007bff;
-      margin-bottom: 25px;
-    }
-    .info-card h5 {
-      font-family: 'Playfair Display', serif;
-      font-size: 22px;
-      margin-bottom: 15px;
-      color: #2d3436;
-    }
-    .info-card p {
-      color: #636e72;
-      line-height: 1.7;
-    }
-    .form-card {
-      background: #fff;
-      border: none;
-      border-radius: 25px;
-      box-shadow: 0 15px 50px rgba(0,0,0,0.1);
-      overflow: hidden;
-    }
-    .form-card .card-header {
-      background: linear-gradient(135deg, #007bff, #0056b3);
-      color: #fff;
-      padding: 25px;
-      text-align: center;
-      border: none;
-    }
-    .form-card .card-header h4 {
-      font-family: 'Playfair Display', serif;
-      margin: 0;
-      font-size: 24px;
-    }
-    .form-card .card-body {
-      padding: 40px;
-    }
-    .form-control {
-      border-radius: 12px;
-      padding: 14px 20px;
-      border: 2px solid #e9ecef;
-      transition: all 0.3s ease;
-    }
-    .form-control:focus {
-      border-color: #007bff;
-      box-shadow: 0 0 0 3px rgba(0,123,255,0.1);
-    }
-    .input-group-text {
-      border-radius: 12px 0 0 12px;
-      border: 2px solid #e9ecef;
-      border-right: 0;
-      background-color: #f8f9fa;
-      color: #007bff;
-    }
-    .input-group .form-control {
-      border-radius: 0 12px 12px 0;
-    }
-    .btn-primary {
-      background: linear-gradient(135deg, #007bff, #0056b3);
-      border: none;
-      border-radius: 50px;
-      padding: 15px 50px;
-      font-size: 18px;
-      font-weight: 600;
-      transition: all 0.3s ease;
-    }
-    .btn-primary:hover {
-      background: linear-gradient(135deg, #0056b3, #003d82);
-      transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(0,123,255,0.3);
-    }
-    .feedback-section {
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      padding: 60px 0;
-      color: #fff;
-    }
-    .feedback-section h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 32px;
-      margin-bottom: 20px;
-    }
-    .btn-feedback {
-      background: #fff;
-      color: #667eea;
-      border: none;
-      border-radius: 50px;
-      padding: 15px 40px;
-      font-size: 18px;
-      font-weight: 600;
-      transition: all 0.3s ease;
-    }
-    .btn-feedback:hover {
-      background: #f8f9fa;
-      transform: scale(1.05);
-    }
-    .price-badge {
-      background: linear-gradient(135deg, #00b894, #00cec9);
-      color: #fff;
-      padding: 10px 25px;
-      border-radius: 50px;
-      font-size: 18px;
-      font-weight: 600;
-      display: inline-block;
-      margin-bottom: 20px;
-    }
-    .modal-content {
-      border-radius: 20px;
-      border: none;
-    }
-    .modal-header {
-      background: linear-gradient(135deg, #007bff, #0056b3);
-      color: #fff;
-      border-radius: 20px 20px 0 0;
-      border: none;
-    }
-    .modal-header .btn-close {
-      filter: brightness(0) invert(1);
-    }
-    .star-rating i {
-      font-size: 28px;
-      color: #ddd;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-    .star-rating i:hover,
-    .star-rating i.active {
-      color: #ffc107;
-      transform: scale(1.2);
-    }
-    .site-footer {
-      background: #2d3436;
-      color: #b2bec3;
-      padding: 60px 0 30px;
-    }
-    .site-footer h5 {
-      color: #fff;
-      font-family: 'Playfair Display', serif;
-      margin-bottom: 25px;
-    }
-    .site-footer a {
-      color: #b2bec3;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-    .site-footer a:hover {
-      color: #007bff;
-    }
-    .social-icons a {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 45px;
-      height: 45px;
-      background: rgba(255,255,255,0.1);
-      border-radius: 50%;
-      margin-right: 10px;
-      transition: all 0.3s ease;
-    }
-    .social-icons a:hover {
-      background: #007bff;
-      color: #fff;
-    }
+    .header-section h1 { font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 700; margin-bottom: 15px; position: relative; z-index: 1;}
+    .header-section p { font-size: 18px; opacity: 0.9; position: relative; z-index: 1; }
+    
+    .breadcrumb-nav { background: #fff; padding: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+    .breadcrumb-nav a { color: #007bff; text-decoration: none; }
+    
+    .form-section, .service-info-section { padding: 60px 0; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: 36px; margin-bottom: 40px; text-align: center; color: #2d3436; }
+    .section-title span { color: #007bff; }
+    
+    .info-card { background: #fff; border: none; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); transition: all 0.4s ease; height: 100%; padding: 40px 30px; text-align: center; }
+    .info-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0,0,0,0.12); }
+    .info-card i { font-size: 50px; color: #007bff; margin-bottom: 25px; }
+    .info-card h5 { font-family: 'Playfair Display', serif; font-size: 22px; margin-bottom: 15px; color: #2d3436; }
+    
+    .form-card { background: #fff; border: none; border-radius: 25px; box-shadow: 0 15px 50px rgba(0,0,0,0.1); overflow: hidden; }
+    .form-card .card-header { background: linear-gradient(135deg, #007bff, #0056b3); color: #fff; padding: 25px; text-align: center; border: none; }
+    .form-card .card-header h4 { font-family: 'Playfair Display', serif; margin: 0; font-size: 24px; }
+    .form-card .card-body { padding: 40px; }
+    .form-control { border-radius: 12px; padding: 14px 20px; border: 2px solid #e9ecef; transition: all 0.3s ease; }
+    .form-control:focus { border-color: #007bff; box-shadow: 0 0 0 3px rgba(0,123,255,0.1); }
+    .input-group-text { border-radius: 12px 0 0 12px; border: 2px solid #e9ecef; border-right: 0; background-color: #f8f9fa; color: #007bff; }
+    .input-group .form-control { border-radius: 0 12px 12px 0; }
+    
+    .btn-primary { background: linear-gradient(135deg, #007bff, #0056b3); border: none; border-radius: 50px; padding: 15px 50px; font-size: 18px; font-weight: 600; transition: all 0.3s ease; }
+    .btn-primary:hover { background: linear-gradient(135deg, #0056b3, #003d82); transform: translateY(-3px); }
+    
+    .price-badge { background: linear-gradient(135deg, #00b894, #00cec9); color: #fff; padding: 10px 25px; border-radius: 50px; font-size: 18px; font-weight: 600; display: inline-block; margin-bottom: 20px; }
+    
+    .site-footer { background: #2d3436; color: #b2bec3; padding: 60px 0 30px; }
+    .site-footer a { color: #b2bec3; text-decoration: none; }
+    .site-footer a:hover { color: #007bff; }
   </style>
 </head>
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 
-  <div class="site-mobile-menu site-navbar-target">
-    <div class="site-mobile-menu-header">
-      <div class="site-mobile-menu-close mt-3">
-        <span class="icon-close2 js-menu-toggle"></span>
-      </div>
-    </div>
-    <div class="site-mobile-menu-body"></div>
-  </div>
-
   <header class="site-navbar light js-sticky-header site-navbar-target" role="banner">
-
       <div class="container">
         <div class="row align-items-center">
-
           <div class="col-6 col-xl-2">
-            <div class="mb-0 site-logo"><a href="index.html" class="mb-0">Elderly Care<span class="text-primary"></span> </a></div>
+            <div class="mb-0 site-logo"><a href="{{ url_for('main_controller.home') }}" class="mb-0">Elderly Care<span class="text-primary"></span> </a></div>
           </div>
-
           <div class="col-12 col-md-10 d-none d-xl-block">
             <nav class="site-navigation position-relative text-right" role="navigation">
-
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                <li><a href="index.html" class="nav-link">Home</a></li>
-                <li class="has-children">
-                  <a href="services.html" class="nav-link">Services</a>
-                  <ul class="dropdown">
-                    <li><a href="NurseRequest.html" class="nav-link">Nurse Request</a></li>
-                    <li><a href="DoctorCheckup.html" class="nav-link">Doctor Checkup</a></li>
-                    <li><a href="NeedCompany.html" class="nav-link">Need Company?</a></li>
-                    <li><a href="CarWashing.html" class="nav-link">Car Washing</a></li>
-                    <li class="has-children">
-                      <a href="#">More Links</a>
-                      <ul class="dropdown">
-                        <li><a href="#">Menu One</a></li>
-                        <li><a href="#">Menu Two</a></li>
-                        <li><a href="#">Menu Three</a></li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-
-
-                <!--<li><a href="about.html" class="nav-link">About</a></li>-->
-                <li><a href="contact.html" class="nav-link">Contact</a></li>
-
-                <li class="social"><a href="contact.html" class="nav-link"><span class="icon-facebook"></span></a></li>
-                <li class="social"><a href="contact.html" class="nav-link"><span class="icon-twitter"></span></a></li>
-                <li class="social"><a href="contact.html" class="nav-link"><span class="icon-linkedin"></span></a></li>
-                <li class="ml-3"> <a href="registration.html" class="btn btn-primary text-white py-2 px-4">Register</a></li>
-                <li class="ml-3"><a href="user_profile.html" class="btn btn-outline-primary py-2 px-4">Profile</a></li>
+                <li><a href="{{ url_for('main_controller.home') }}" class="nav-link">Home</a></li>
+                <li><a href="{{ url_for('main_controller.services') }}" class="nav-link">Services</a></li>
+                <li><a href="{{ url_for('main_controller.contact') }}" class="nav-link">Contact</a></li>
+                <li class="ml-3"><a href="{{ url_for('main_controller.user_profile') }}" class="btn btn-outline-primary py-2 px-4">Profile</a></li>
               </ul>
             </nav>
           </div>
-
-
-          <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle float-right"><span class="icon-menu h3 text-white"></span></a></div>
-
         </div>
       </div>
-
-    </header>
+  </header>
 
   <div class="header-section">
     <div class="container">
@@ -329,7 +89,7 @@
 
   <div class="breadcrumb-nav">
     <div class="container">
-      <a href="index.html">Home</a> / <a href="services.html">Services</a> / <span class="text-muted">Doctor Checkup</span>
+      <a href="{{ url_for('main_controller.home') }}">Home</a> / <a href="{{ url_for('main_controller.services') }}">Services</a> / <span class="text-muted">Doctor Checkup</span>
     </div>
   </div>
 
@@ -341,21 +101,21 @@
           <div class="info-card">
             <i class="fa fa-user-md"></i>
             <h5>Certified Physicians</h5>
-            <p>Our doctors are board-certified with years of experience in geriatric medicine and home healthcare services.</p>
+            <p>Our doctors are board-certified with years of experience in geriatric medicine.</p>
           </div>
         </div>
         <div class="col-md-4">
           <div class="info-card">
             <i class="fa fa-stethoscope"></i>
             <h5>Complete Health Assessment</h5>
-            <p>Comprehensive checkups including vital signs, physical examination, and personalized health recommendations.</p>
+            <p>Comprehensive checkups including vital signs and physical examination.</p>
           </div>
         </div>
         <div class="col-md-4">
           <div class="info-card">
             <i class="fa fa-file-medical"></i>
             <h5>Medical Reports</h5>
-            <p>Receive detailed medical reports and prescriptions with follow-up recommendations for continued care.</p>
+            <p>Receive detailed medical reports and prescriptions with follow-up recommendations.</p>
           </div>
         </div>
       </div>
@@ -365,16 +125,32 @@
   <div class="container form-section">
     <div class="row justify-content-center">
       <div class="col-lg-8">
+        
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <div class="mb-4">
+              {% for category, message in messages %}
+                <div class="alert alert-{{ category }} alert-dismissible fade show">
+                  {{ message }}
+                  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+
         <div class="form-card">
           <div class="card-header">
             <h4><i class="fa fa-clipboard-list me-2"></i>Doctor Checkup Request Form</h4>
           </div>
           <div class="card-body">
             <div class="text-center mb-4">
-              <span class="price-badge"><i class="fa fa-tag me-2"></i>Starting from 700 EGP/visit</span>
+              <span class="price-badge"><i class="fa fa-tag me-2"></i>Fixed Rate: 700 EGP/visit</span>
             </div>
-            <form action="Payment.html" method="get">
-              <input type="hidden" name="serviceName" value="Doctor Checkup">
+            
+            <form action="{{ url_for('main_controller.payment') }}" method="POST">
+              <input type="hidden" name="user_id" value="{{ session.get('user_id', '') }}">
+              <input type="hidden" name="service_id" value="2"> <input type="hidden" name="serviceName" value="Doctor Checkup">
               <input type="hidden" name="servicePrice" value="700">
 
               <div class="row mb-4">
@@ -399,70 +175,40 @@
                   <label class="form-label fw-bold">Email Address</label>
                   <div class="input-group">
                     <span class="input-group-text"><i class="fa fa-envelope"></i></span>
-                    <input type="email" class="form-control" placeholder="Enter email address" name="email" required>
+                    <input type="email" class="form-control" placeholder="Enter email address" name="email">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <label class="form-label fw-bold">Preferred Date</label>
                   <div class="input-group">
                     <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-                    <input type="date" class="form-control" name="date" required>
+                    <input type="date" class="form-control" name="appointment_date" required>
                   </div>
                 </div>
               </div>
 
-              <div class="row mb-4">
-                <div class="col-md-6 mb-3 mb-md-0">
-                  <label class="form-label fw-bold">Patient Age</label>
-                  <div class="input-group">
-                    <span class="input-group-text"><i class="fa fa-birthday-cake"></i></span>
-                    <input type="number" class="form-control" placeholder="Enter patient age" name="age" min="1" max="120" required>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <label class="form-label fw-bold">Checkup Type</label>
-                  <select class="form-control" name="duration" required>
-                    <option value="">Select checkup type</option>
-                    <option value="basic">Basic Checkup - 700 EGP</option>
-                    <option value="comprehensive">Comprehensive Checkup - 1200 EGP</option>
-                    <option value="specialist">Specialist Consultation - 1500 EGP</option>
-                    <option value="emergency">Emergency Visit - 2000 EGP</option>
-                  </select>
-                </div>
-              </div>
-
               <div class="mb-4">
-                <label class="form-label fw-bold">Medical Specialty Needed</label>
-                <select class="form-control" name="specialty">
-                  <option value="general">General Physician</option>
-                  <option value="cardiology">Cardiologist</option>
-                  <option value="neurology">Neurologist</option>
-                  <option value="orthopedics">Psychiatry</option>
-                  <option value="internal">Internal Medicine</option>
-                </select>
-              </div>
-
-              <div class="mb-4">
-                <label class="form-label fw-bold">Address</label>
+                <label class="form-label fw-bold">Address / Location</label>
                 <div class="input-group">
                   <span class="input-group-text"><i class="fa fa-map-marker-alt"></i></span>
-                  <textarea class="form-control" rows="2" placeholder="Enter your full address" name="address" required></textarea>
+                  <textarea class="form-control" rows="2" placeholder="Enter your full address" name="location" required></textarea>
                 </div>
               </div>
 
               <div class="mb-4">
-                <label class="form-label fw-bold">Medical History & Current Symptoms (Optional)</label>
+                <label class="form-label fw-bold">Medical History / Symptoms (Optional)</label>
                 <div class="input-group">
                   <span class="input-group-text"><i class="fa fa-notes-medical"></i></span>
-                  <textarea class="form-control" rows="3" placeholder="Any existing conditions, medications, or symptoms to discuss..." name="notes"></textarea>
+                  <textarea class="form-control" rows="3" placeholder="Briefly describe the condition..." name="notes"></textarea>
                 </div>
               </div>
 
               <div class="text-center">
                 <button type="submit" class="btn btn-primary">
-                  <i class="fa fa-paper-plane me-2"></i>Proceed to Payment
+                  <i class="fa fa-check-circle me-2"></i>Confirm Doctor Visit
                 </button>
               </div>
+
             </form>
           </div>
         </div>
@@ -470,67 +216,15 @@
     </div>
   </div>
 
-  <div class="feedback-section text-center">
-    <div class="container">
-      <h3>Share Your Experience</h3>
-      <p class="mb-4">Your feedback helps us improve our medical services</p>
-      <a href="Feedback.html" class="btn btn-feedback">
-        <i class="fa fa-star me-2"></i>Leave Feedback
-      </a>
+  <div class="site-footer">
+    <div class="container text-center">
+      <p class="mb-0">&copy; <script>document.write(new Date().getFullYear());</script> Elderly Care. All rights reserved.</p>
     </div>
   </div>
 
-  <footer class="site-footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-4 mb-4 mb-lg-0">
-          <h5>Elderly Care</h5>
-          <p>We are dedicated to providing compassionate care services for the elderly community.</p>
-          <div class="social-icons mt-4">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-          </div>
-        </div>
-        <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
-          <h5>Quick Links</h5>
-          <ul class="list-unstyled">
-            <li class="mb-2"><a href="index.html">Home</a></li>
-            <li class="mb-2"><a href="services.html">Services</a></li>
-            <li class="mb-2"><a href="about.html">About Us</a></li>
-            <li class="mb-2"><a href="contact.html">Contact</a></li>
-          </ul>
-        </div>
-        <div class="col-lg-3 col-md-4 mb-4 mb-md-0">
-          <h5>Our Services</h5>
-          <ul class="list-unstyled">
-            <li class="mb-2"><a href="NurseRequest.html">Nurse Request</a></li>
-            <li class="mb-2"><a href="DoctorCheckup.html">Doctor Checkup</a></li>
-            <li class="mb-2"><a href="NeedCompany.html">Companionship</a></li>
-            <li class="mb-2"><a href="CarWashing.html">Car Washing</a></li>
-          </ul>
-        </div>
-        <div class="col-lg-3 col-md-4">
-          <h5>Contact Info</h5>
-          <ul class="list-unstyled">
-            <li class="mb-2"><i class="fa fa-phone me-2"></i> +20 123 456 7890</li>
-            <li class="mb-2"><i class="fa fa-envelope me-2"></i> info@elderlycare.com</li>
-            <li class="mb-2"><i class="fa fa-map-marker-alt me-2"></i> Cairo, Egypt</li>
-          </ul>
-        </div>
-      </div>
-      <hr class="my-4" style="border-color: rgba(255,255,255,0.1);">
-      <div class="text-center">
-        <p class="mb-0">&copy; <script>document.write(new Date().getFullYear());</script> Elderly Care. All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
+  <script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 
-  <script src="js/jquery-3.3.1.min.js"></script>
-  <script src="js/jquery-migrate-3.0.1.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/main.js"></script>
 </body>
 </html>
