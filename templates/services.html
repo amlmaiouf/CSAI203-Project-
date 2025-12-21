@@ -3,253 +3,112 @@
 <head>
   <title>Services — Elderly Care</title>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="stylesheet" href="{{ url_for('static', filename='fonts/icomoon/style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  
   <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery-ui.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.min.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.theme.default.min.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.fancybox.min.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-datepicker.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='fonts/flaticon/font/flaticon.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/aos.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
-    
-    .service-card {
-      background: #fff;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-      transition: all 0.4s ease;
-      height: 100%;
-    }
-    .service-card:hover {
-      transform: translateY(-15px);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.15);
-    }
-    .service-card img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-    }
-    .service-card-body {
-      padding: 25px;
-      text-align: center;
-    }
-    .service-card-body h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 24px;
-      margin-bottom: 15px;
-      color: #2d3436;
-    }
-    .service-card-body p {
-      color: #636e72;
-      margin-bottom: 20px;
-    }
-    .service-card-body .btn {
-      background: linear-gradient(135deg, #007bff, #0056b3);
-      border: none;
-      border-radius: 50px;
-      padding: 12px 30px;
-      color: #fff;
-      font-weight: 600;
-      transition: all 0.3s ease;
-    }
-    .service-card-body .btn:hover {
-      background: linear-gradient(135deg, #0056b3, #003d82);
-      transform: scale(1.05);
-    }
+    body { font-family: 'Open Sans', sans-serif; background-color: #f8f9fa; }
+    .navbar { background: #fff; padding-top: 20px; padding-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    .navbar a { color: #000 !important; font-weight: 600; }
+    .navbar .btn-primary { color: #fff !important; }
+    .hero-services { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("{{ url_for('static', filename='images/slider-2.jpg') }}") center/cover no-repeat; padding: 100px 0; color: #fff; text-align: center; }
+    .hero-services h1 { font-family: 'Playfair Display', serif; font-size: 48px; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: 36px; text-align: center; margin-bottom: 50px; }
+    .section-title span { color: #007bff; }
+    .service-card { background: #fff; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); overflow: hidden; transition: 0.4s; height: 100%; text-align: center; display: flex; flex-direction: column; }
+    .service-card:hover { transform: translateY(-10px); }
+    .service-card img { width: 100%; height: 220px; object-fit: cover; }
+    .service-card-body { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+    .service-card-body h3 { font-family: 'Playfair Display', serif; margin-bottom: 15px; }
+    .service-card-body .price { font-size: 1.2rem; color: #28a745; font-weight: bold; margin-bottom: 15px; }
+    .service-card-body .btn { background: linear-gradient(135deg, #007bff, #0056b3); color: #fff; border-radius: 50px; padding: 10px 30px; font-weight: 600; width: 100%; }
+    .site-footer { background: #2d3436; color: #b2bec3; padding: 60px 0 30px; }
   </style>
 </head>
+
 <body>
 
-  <div class="site-wrap">
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="{{ url_for('main_controller.home') }}">Elderly Care</a>
+    <div class="collapse navbar-collapse show">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="{{ url_for('main_controller.home') }}">Home</a></li>
+        <li class="nav-item"><a class="nav-link active" href="{{ url_for('main_controller.services') }}">Services</a></li>
+        
+        <li class="nav-item"><a class="nav-link" href="{{ url_for('main_controller.supermarket') }}">Supermarket</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ url_for('main_controller.pharmacy') }}">Pharmacy</a></li>
 
-    <!-- Mobile menu -->
-    <div class="site-mobile-menu site-navbar-target">
-      <div class="site-mobile-menu-header">
-        <div class="site-mobile-menu-close mt-3">
-          <span class="icon-close2 js-menu-toggle"></span>
-        </div>
-      </div>
-      <div class="site-mobile-menu-body"></div>
+        <li class="nav-item"><a class="nav-link" href="{{ url_for('main_controller.contact') }}">Contact</a></li>
+        <li class="nav-item"><a class="nav-link btn btn-primary text-white ms-3 px-3" href="{{ url_for('main_controller.registration') }}">Register</a></li>
+      </ul>
     </div>
-
-    <!-- Header -->
-    <header class="site-navbar light js-sticky-header site-navbar-target" role="banner">
-
-      <div class="container">
-        <div class="row align-items-center">
-
-          <div class="col-6 col-xl-2">
-            <div class="mb-0 site-logo"><a href="index.html" class="mb-0">Elderly Care<span class="text-primary"></span> </a></div>
-          </div>
-
-          <div class="col-12 col-md-10 d-none d-xl-block">
-            <nav class="site-navigation position-relative text-right" role="navigation">
-
-              <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                <li><a href="index.html" class="nav-link">Home</a></li>
-                <li class="has-children">
-                  <a href="services.html" class="active nav-link">Services</a>
-                  <ul class="dropdown">
-                    <li><a href="{{ url_for('nurse_request') }}" class="nav-link">Nurse Request</a></li>
-                    <li><a href="{{ url_for('doctor_checkup') }}" class="nav-link">Doctor Checkup</a></li>
-                    <li><a href="{{ url_for('need_company') }}" class="nav-link">Need Company?</a></li>
-                    <li><a href="{{ url_for('car_washing') }}" class="nav-link">Car Washing</a></li>
-                    <li class="has-children">
-                      <a href="#">More Links</a>
-                      <ul class="dropdown">
-                        <li><a href="#">Menu One</a></li>
-                        <li><a href="#">Menu Two</a></li>
-                        <li><a href="#">Menu Three</a></li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-
-
-                <!--<li><a href="about.html" class="nav-link">About</a></li>-->
-                <li><a href="contact.html" class="nav-link">Contact</a></li>
-
-                <li class="social"><a href="contact.html" class="nav-link"><span class="icon-facebook"></span></a></li>
-                <li class="social"><a href="contact.html" class="nav-link"><span class="icon-twitter"></span></a></li>
-                <li class="social"><a href="contact.html" class="nav-link"><span class="icon-linkedin"></span></a></li>
-                <li class="ml-3"> <a href="registration.html" class="btn btn-primary text-white py-2 px-4">Register</a></li>
-                <li class="ml-3"><a href="user_profile.html" class="btn btn-outline-primary py-2 px-4">Profile</a></li>
-              </ul>
-            </nav>
-          </div>
-
-
-          <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle float-right"><span class="icon-menu h3 text-white"></span></a></div>
-
-        </div>
-      </div>
-
-    </header>
-
-    <!-- Hero Section -->
-    <div class="hero-services">
-      <i class="fas fa-hand-holding-medical hero-icon icon-1"></i>
-      <i class="fas fa-heartbeat hero-icon icon-2"></i>
-      <i class="fas fa-user-nurse hero-icon icon-3"></i>
-      <div class="container">
-        <h1>Our Services</h1>
-        <p>Professional care services designed for your loved ones</p>
-      </div>  
-    </div>
-
-    <!-- Services Cards -->
-    <div class="py-5" style="background: #f8f9fa;">
-      <div class="container py-5">
-        <h2 class="section-title">What We <span>Offer</span></h2>
-        <div class="row g-4">
-          <div class="col-md-6 col-lg-3">
-            <div class="service-card">
-              <img src="{{ url_for('static', filename='images/nurse_service.svg') }}" alt="Nurse Service">
-              <div class="service-card-body">
-                <h3>Nurse Request</h3>
-                <p>Professional nursing care at your home with trained and certified nurses.</p>
-                <a href="/book/1" class="btn">Request Now</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-3">
-            <div class="service-card">
-              <img src="{{ url_for('static', filename='images/doctor_service.svg') }}" alt="Doctor Service">
-              <div class="service-card-body">
-                <h3>Doctor Checkup</h3>
-                <p>Regular medical checkups by experienced doctors at your doorstep.</p>
-                <a href="/book/2" class="btn">Book Now</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-3">
-            <div class="service-card">
-              <img src="{{ url_for('static', filename='images/companion_service.svg') }}" alt="Companion Service">
-              <div class="service-card-body">
-                <h3>Need Company?</h3>
-                <p>Friendly companions to spend quality time and provide emotional support.</p>
-                <a href="/book/3" class="btn">Find Companion</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-3">
-            <div class="service-card">
-              <img src="{{ url_for('static', filename='images/car_service.svg') }}" alt="Car Washing Service">
-              <div class="service-card-body">
-                <h3>Car Washing</h3>
-                <p>Convenient car washing service while you relax at home.</p>
-                <a href="/book/4" class="btn">Book Service</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Footer -->
-    <div class="site-footer bg-light">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-4">
-            <h2 class="footer-heading mb-4">About</h2>
-            <p>We are a group of students dedicating ourselves to help the elderly community with ease.</p>
-            <div class="my-5 social">
-              <a href="#" class="pl-0 pr-3"><span class="icon-facebook"></span></a>
-              <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
-              <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
-              <a href="#" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
-            </div>
-          </div>
-          <div class="col-lg-8">
-            <div class="row">
-              <div class="col-lg-4">
-                <h2 class="footer-heading mb-4">Quick Links</h2>
-                <ul class="list-unstyled">
-                  <li><a href="{{ url_for('home') }}">Home</a></li>
-                  <li><a href="{{ url_for('view_services') }}">Services</a></li>
-                  <li><a href="{{ url_for('about') }}">About Us</a></li>
-                  <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
-                </ul>
-              </div>
-              <div class="col-lg-4">
-                <h2 class="footer-heading mb-4">Services</h2>
-                <ul class="list-unstyled">
-                  <li><a href="{{ url_for('nurse_request') }}">Nurse Request</a></li>
-                  <li><a href="{{ url_for('doctor_checkup') }}">Doctor Checkup</a></li>
-                  <li><a href="{{ url_for('need_company') }}">Companionship</a></li>
-                  <li><a href="{{ url_for('car_washing') }}">Car Washing</a></li>
-                </ul>
-              </div>
-              <div class="col-lg-4">
-                <h2 class="footer-heading mb-4">Contact</h2>
-                <ul class="list-unstyled">
-                  <li><i class="fas fa-phone me-2"></i> +20 123 456 7890</li>
-                  <li><i class="fas fa-envelope me-2"></i> info@elderlycare.com</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row text-center">
-          <div class="col-md-12">
-            <div class="border-top pt-5">
-              <p class="copyright"><small>
-                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-              </small></p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
   </div>
+</nav>
+
+<div class="hero-services">
+  <div class="container">
+    <h1>Our Available Services</h1>
+    <p>Book professional care instantly</p>
+  </div>
+</div>
+
+<div class="container py-5">
+  <h2 class="section-title">Select a <span>Service</span></h2>
+  
+  <div class="row g-4 mb-5">
+    <div class="col-md-6">
+      <div class="card p-4 border-0 shadow-sm text-center bg-white" style="border-radius: 20px;">
+        <i class="fa fa-shopping-cart fa-3x text-primary mb-3"></i>
+        <h3>Order Essentials</h3>
+        <p>Browse our supermarket for daily needs.</p>
+        <a href="{{ url_for('main_controller.supermarket') }}" class="btn btn-outline-primary">Open Supermarket</a>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card p-4 border-0 shadow-sm text-center bg-white" style="border-radius: 20px;">
+        <i class="fa fa-pills fa-3x text-danger mb-3"></i>
+        <h3>Medical Supplies</h3>
+        <p>Order prescription and over-the-counter medicine.</p>
+        <a href="{{ url_for('main_controller.pharmacy') }}" class="btn btn-outline-danger">Open Pharmacy</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-4">
+    {% for service in services %}
+    <div class="col-md-6 col-lg-3">
+      <div class="service-card">
+        <img src="{{ url_for('static', filename='images/img_3.jpg') }}" alt="Service Image">
+        <div class="service-card-body">
+          <h3>{{ service.service_name }}</h3>
+          <p class="text-muted">{{ service.type }}</p>
+          <div class="price">{{ service.price }} EGP</div>
+          
+          <a href="{{ url_for('main_controller.book_service', service_id=service.service_id) }}" class="btn">Book Now</a>
+          
+        </div>
+      </div>
+    </div>
+    {% else %}
+    <div class="col-12 text-center">
+        <p>No extra services found. Check your database.</p>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="container text-center">
+    <p class="mb-0">&copy; <script>document.write(new Date().getFullYear());</script> Elderly Care. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
 
 </body>
 </html>

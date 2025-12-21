@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About Us - Elderly Care Services</title>
 
-  <!-- CSS -->
   <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/aos.css') }}">
@@ -13,23 +12,23 @@
 </head>
 <body>
 
-  <!-- HEADER -->
   <header class="site-navbar py-3" role="banner">
     <div class="container">
       <div class="row align-items-center">
 
         <div class="col-6 col-xl-2">
           <h1 class="mb-0 site-logo">
-            <a href="/services" class="text-black h2 mb-0">ElderlyCare</a>
+            <a href="{{ url_for('main_controller.home') }}" class="text-black h2 mb-0">ElderlyCare</a>
           </h1>
         </div>
 
         <div class="col-12 col-md-10 d-none d-xl-block">
           <nav class="site-navigation position-relative text-right" role="navigation">
             <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
-              <li><a href="/services">Services</a></li>
-              <li class="active"><a href="/about">About</a></li>
-              <li><a href="/contact">Contact</a></li>
+              <li><a href="{{ url_for('main_controller.home') }}">Home</a></li>
+              <li><a href="{{ url_for('main_controller.services') }}">Services</a></li>
+              <li class="active"><a href="{{ url_for('main_controller.about') }}">About</a></li>
+              <li><a href="{{ url_for('main_controller.contact') }}">Contact</a></li>
             </ul>
           </nav>
         </div>
@@ -38,7 +37,6 @@
     </div>
   </header>
 
-  <!-- MAIN CONTENT -->
   <div class="site-wrap">
     <div class="site-section">
       <div class="container">
@@ -82,5 +80,10 @@
       </div>
     </div>
   </div>  
+
+  <script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
 </body>
 </html>

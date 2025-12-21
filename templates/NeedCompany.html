@@ -8,8 +8,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="fonts/icomoon/style.css">
-  <link rel="stylesheet" href="css/style.css">
+  
+  <link rel="stylesheet" href="{{ url_for('static', filename='fonts/icomoon/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
   <style>
     body {
@@ -77,6 +78,8 @@
     }
     .section-title span {
       color: #6c5ce7;
+      text-decoration: underline;
+      text-decoration-color: #a29bfe;
     }
     .info-card {
       background: #fff;
@@ -129,13 +132,13 @@
     .form-card .card-body {
       padding: 40px;
     }
-    .form-control {
+    .form-control, .form-select {
       border-radius: 12px;
       padding: 14px 20px;
       border: 2px solid #e9ecef;
       transition: all 0.3s ease;
     }
-    .form-control:focus {
+    .form-control:focus, .form-select:focus {
       border-color: #6c5ce7;
       box-shadow: 0 0 0 3px rgba(108,92,231,0.1);
     }
@@ -196,30 +199,7 @@
       font-weight: 600;
       display: inline-block;
       margin-bottom: 20px;
-    }
-    .modal-content {
-      border-radius: 20px;
-      border: none;
-    }
-    .modal-header {
-      background: linear-gradient(135deg, #6c5ce7, #a29bfe);
-      color: #fff;
-      border-radius: 20px 20px 0 0;
-      border: none;
-    }
-    .modal-header .btn-close {
-      filter: brightness(0) invert(1);
-    }
-    .star-rating i {
-      font-size: 28px;
-      color: #ddd;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-    .star-rating i:hover,
-    .star-rating i.active {
-      color: #ffc107;
-      transform: scale(1.2);
+      transition: all 0.3s ease;
     }
     .site-footer {
       background: #2d3436;
@@ -268,26 +248,23 @@
   </div>
 
   <header class="site-navbar light js-sticky-header site-navbar-target" role="banner">
-
       <div class="container">
         <div class="row align-items-center">
-
           <div class="col-6 col-xl-2">
-            <div class="mb-0 site-logo"><a href="index.html" class="mb-0">Elderly Care<span class="text-primary"></span> </a></div>
+            <div class="mb-0 site-logo"><a href="{{ url_for('main_controller.home') }}" class="mb-0">Elderly Care<span class="text-primary"></span> </a></div>
           </div>
 
           <div class="col-12 col-md-10 d-none d-xl-block">
             <nav class="site-navigation position-relative text-right" role="navigation">
-
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="{{ url_for('main_controller.home') }}" class="nav-link">Home</a></li>
                 <li class="has-children">
-                  <a href="services.html" class="nav-link">Services</a>
+                  <a href="{{ url_for('main_controller.services') }}" class="nav-link">Services</a>
                   <ul class="dropdown">
-                    <li><a href="NurseRequest.html" class="nav-link">Nurse Request</a></li>
-                    <li><a href="DoctorCheckup.html" class="nav-link">Doctor Checkup</a></li>
-                    <li><a href="NeedCompany.html" class="nav-link">Need Company?</a></li>
-                    <li><a href="CarWashing.html" class="nav-link">Car Washing</a></li>
+                    <li><a href="{{ url_for('main_controller.nurse_request') }}" class="nav-link">Nurse Request</a></li>
+                    <li><a href="{{ url_for('main_controller.doctor_checkup') }}" class="nav-link">Doctor Checkup</a></li>
+                    <li><a href="{{ url_for('main_controller.need_company') }}" class="nav-link">Need Company?</a></li>
+                    <li><a href="{{ url_for('main_controller.car_washing') }}" class="nav-link">Car Washing</a></li>
                     <li class="has-children">
                       <a href="#">More Links</a>
                       <ul class="dropdown">
@@ -298,27 +275,20 @@
                     </li>
                   </ul>
                 </li>
-
-
-                <!--<li><a href="about.html" class="nav-link">About</a></li>-->
-                <li><a href="contact.html" class="nav-link">Contact</a></li>
-
-                <li class="social"><a href="contact.html" class="nav-link"><span class="icon-facebook"></span></a></li>
-                <li class="social"><a href="contact.html" class="nav-link"><span class="icon-twitter"></span></a></li>
-                <li class="social"><a href="contact.html" class="nav-link"><span class="icon-linkedin"></span></a></li>
-                <li class="ml-3"> <a href="registration.html" class="btn btn-primary text-white py-2 px-4">Register</a></li>
-                <li class="ml-3"><a href="user_profile.html" class="btn btn-outline-primary py-2 px-4">Profile</a></li>
+                <li><a href="{{ url_for('main_controller.contact') }}" class="nav-link">Contact</a></li>
+                <li class="social"><a href="{{ url_for('main_controller.contact') }}" class="nav-link"><span class="icon-facebook"></span></a></li>
+                <li class="social"><a href="{{ url_for('main_controller.contact') }}" class="nav-link"><span class="icon-twitter"></span></a></li>
+                <li class="social"><a href="{{ url_for('main_controller.contact') }}" class="nav-link"><span class="icon-linkedin"></span></a></li>
+                <li class="ml-3"> <a href="{{ url_for('main_controller.registration') }}" class="btn btn-primary text-white py-2 px-4">Register</a></li>
+                <li class="ml-3"><a href="{{ url_for('main_controller.user_profile') }}" class="btn btn-outline-primary py-2 px-4">Profile</a></li>
               </ul>
             </nav>
           </div>
 
-
           <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle float-right"><span class="icon-menu h3 text-white"></span></a></div>
-
         </div>
       </div>
-
-    </header>
+  </header>
 
   <div class="header-section">
     <div class="container">
@@ -329,7 +299,7 @@
 
   <div class="breadcrumb-nav">
     <div class="container">
-      <a href="index.html">Home</a> / <a href="services.html">Services</a> / <span class="text-muted">Need Company</span>
+      <a href="{{ url_for('main_controller.home') }}">Home</a> / <a href="{{ url_for('main_controller.services') }}">Services</a> / <span class="text-muted">Need Company</span>
     </div>
   </div>
 
@@ -371,11 +341,12 @@
           </div>
           <div class="card-body">
             <div class="text-center mb-4">
-              <span class="price-badge"><i class="fa fa-tag me-2"></i>Starting from 300 EGP/visit</span>
+              <span class="price-badge" id="priceDisplay"><i class="fa fa-tag me-2"></i>Starting from 300 EGP/visit</span>
             </div>
-            <form action="Payment.html" method="get">
+            
+            <form action="{{ url_for('main_controller.payment') }}" method="post" id="serviceForm">
               <input type="hidden" name="serviceName" value="Need Company">
-              <input type="hidden" name="servicePrice" value="300">
+              <input type="hidden" name="servicePrice" id="servicePriceInput" value="300">
 
               <div class="row mb-4">
                 <div class="col-md-6 mb-3 mb-md-0">
@@ -414,7 +385,7 @@
               <div class="row mb-4">
                 <div class="col-md-6 mb-3 mb-md-0">
                   <label class="form-label fw-bold">Companion Gender Preference</label>
-                  <select class="form-control" name="gender">
+                  <select class="form-select" name="gender">
                     <option value="any">No Preference</option>
                     <option value="male">Male Companion</option>
                     <option value="female">Female Companion</option>
@@ -422,12 +393,12 @@
                 </div>
                 <div class="col-md-6">
                   <label class="form-label fw-bold">Visit Duration</label>
-                  <select class="form-control" name="duration" required>
-                    <option value="">Select duration</option>
-                    <option value="2hours">2 Hours - 300 EGP</option>
-                    <option value="4hours">4 Hours - 500 EGP</option>
-                    <option value="6hours">6 Hours - 700 EGP</option>
-                    <option value="fullday">Full Day (8 Hours) - 900 EGP</option>
+                  <select class="form-select" name="duration" id="durationSelect" onchange="updatePrice()" required>
+                    <option value="" data-price="0">Select duration</option>
+                    <option value="2hours" data-price="300">2 Hours - 300 EGP</option>
+                    <option value="4hours" data-price="500">4 Hours - 500 EGP</option>
+                    <option value="6hours" data-price="700">6 Hours - 700 EGP</option>
+                    <option value="fullday" data-price="900">Full Day (8 Hours) - 900 EGP</option>
                   </select>
                 </div>
               </div>
@@ -498,7 +469,7 @@
     <div class="container">
       <h3>Share Your Experience</h3>
       <p class="mb-4">Your feedback helps us improve our companionship services</p>
-      <a href="Feedback.html" class="btn btn-feedback">
+      <a href="#" class="btn btn-feedback">
         <i class="fa fa-star me-2"></i>Leave Feedback
       </a>
     </div>
@@ -520,19 +491,19 @@
         <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
           <h5>Quick Links</h5>
           <ul class="list-unstyled">
-            <li class="mb-2"><a href="index.html">Home</a></li>
-            <li class="mb-2"><a href="services.html">Services</a></li>
-            <li class="mb-2"><a href="about.html">About Us</a></li>
-            <li class="mb-2"><a href="contact.html">Contact</a></li>
+             <li class="mb-2"><a href="{{ url_for('main_controller.home') }}">Home</a></li>
+            <li class="mb-2"><a href="{{ url_for('main_controller.services') }}">Services</a></li>
+            <li class="mb-2"><a href="{{ url_for('main_controller.about') }}">About Us</a></li>
+            <li class="mb-2"><a href="{{ url_for('main_controller.contact') }}">Contact</a></li>
           </ul>
         </div>
         <div class="col-lg-3 col-md-4 mb-4 mb-md-0">
           <h5>Our Services</h5>
           <ul class="list-unstyled">
-            <li class="mb-2"><a href="NurseRequest.html">Nurse Request</a></li>
-            <li class="mb-2"><a href="DoctorCheckup.html">Doctor Checkup</a></li>
-            <li class="mb-2"><a href="NeedCompany.html">Companionship</a></li>
-            <li class="mb-2"><a href="CarWashing.html">Car Washing</a></li>
+            <li class="mb-2"><a href="{{ url_for('main_controller.nurse_request') }}">Nurse Request</a></li>
+            <li class="mb-2"><a href="{{ url_for('main_controller.doctor_checkup') }}">Doctor Checkup</a></li>
+            <li class="mb-2"><a href="{{ url_for('main_controller.need_company') }}">Companionship</a></li>
+            <li class="mb-2"><a href="{{ url_for('main_controller.car_washing') }}">Car Washing</a></li>
           </ul>
         </div>
         <div class="col-lg-3 col-md-4">
@@ -551,10 +522,32 @@
     </div>
   </footer>
 
-  <script src="js/jquery-3.3.1.min.js"></script>
-  <script src="js/jquery-migrate-3.0.1.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/main.js"></script>
+  <script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/jquery-migrate-3.0.1.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+  <script>
+    function updatePrice() {
+      // 1. Get elements
+      var select = document.getElementById('durationSelect');
+      var priceInput = document.getElementById('servicePriceInput');
+      var priceDisplay = document.getElementById('priceDisplay');
+      
+      // 2. Get selected option data
+      var selectedOption = select.options[select.selectedIndex];
+      var price = selectedOption.getAttribute('data-price');
+      
+      // 3. Update hidden input and visual badge
+      if(price && price > 0) {
+        priceInput.value = price;
+        priceDisplay.innerHTML = '<i class="fa fa-tag me-2"></i>Total: ' + price + ' EGP/visit';
+        // Add a highlight animation effect
+        priceDisplay.style.transform = "scale(1.1)";
+        setTimeout(() => { priceDisplay.style.transform = "scale(1)"; }, 200);
+      }
+    }
+  </script>
 </body>
 </html>

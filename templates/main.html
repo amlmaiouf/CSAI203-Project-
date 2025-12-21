@@ -1,17 +1,60 @@
-<a href="https://colorlib.com/wp/templates/"><img src="https://colorlib.com/wp/wp-content/uploads/sites/2/colorlib-push-logo.png" alt="Colorlib logo"></a>
-<h1 style="text-align:center;">Thank you for using our template!</h1>
-<p style="text-align:center;">For more awesome templates please visit <strong><a href="https://colorlib.com/wp/templates/">Colorlib</a></strong>.</p>
-<br>
-<p style="text-align:center; color:red;"><strong>Copyright information for the template can't be altered/removed unless you purchase a license.</strong>
+<!doctype html>
+<html lang="en">
+<head>
+  <title>{% block title %}Elderly Care{% endblock %}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<p style="text-align:center;"><strong>Removing copyright information without the license will result in suspension of your hosting and/or domain name(s).</strong>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
-<p style="text-align:center;"><strong>More information about the license is available <a href="https://colorlib.com/wp/licence/">here</a></strong>.</p>
+  <style>
+    body { font-family: 'Open Sans', sans-serif; background-color: #f8f9fa; }
+    .navbar { background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    .site-footer { background: #2d3436; color: #b2bec3; padding: 40px 0; margin-top: 50px; }
+  </style>
+</head>
+<body>
 
-<style>
-img {
-  margin: 0 auto;
-  display: block;
-  margin-top: 20%;
-}
-</style>
+  <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="{{ url_for('main_controller.home') }}">Elderly Care</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('main_controller.home') }}">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('main_controller.services') }}">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('main_controller.about') }}">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('main_controller.contact') }}">Contact</a></li>
+          <li class="nav-item ms-lg-3">
+            <a class="btn btn-primary px-4" href="{{ url_for('main_controller.registration') }}">Register</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content-wrapper">
+    {% block content %}
+        <div class="container py-5 text-center">
+            <h1>Welcome to Elderly Care</h1>
+            <p>Please select a service to begin.</p>
+        </div>
+    {% endblock %}
+  </div>
+
+  <footer class="site-footer">
+    <div class="container text-center">
+      <p>&copy; 2025 Elderly Care. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

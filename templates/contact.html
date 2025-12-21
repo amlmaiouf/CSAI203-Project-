@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <title>Elderly Care</title>
+  <title>Contact — Elderly Care</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    
 
@@ -12,20 +12,30 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery-ui.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.min.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.theme.default.min.css') }}">
-
   <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.fancybox.min.css') }}">
-
   <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-datepicker.css') }}">
-
   <link rel="stylesheet" href="{{ url_for('static', filename='fonts/flaticon/font/flaticon.css') }}">
-
   <link rel="stylesheet" href="{{ url_for('static', filename='css/aos.css') }}">
-
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+  <style>
+    .contact-form-container {
+      background: #fff;
+      padding: 40px;
+      box-shadow: 0 0 30px rgba(0,0,0,0.1);
+      border-radius: 10px;
+    }
+    .form-control {
+      border: 1px solid #ced4da;
+      height: 50px;
+    }
+    textarea.form-control {
+      height: auto;
+    }
+  </style>
 
 </head>
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-
 
   <div class="site-wrap">
 
@@ -37,29 +47,26 @@
       </div>
       <div class="site-mobile-menu-body"></div>
     </div>
-
     
     <header class="site-navbar light js-sticky-header site-navbar-target" role="banner">
-
       <div class="container">
         <div class="row align-items-center">
-
           <div class="col-6 col-xl-2">
-            <div class="mb-0 site-logo"><a href="index.html" class="mb-0">Elderly Care<span class="text-primary"></span> </a></div>
+            <div class="mb-0 site-logo"><a href="{{ url_for('main_controller.home') }}" class="mb-0">Elderly Care<span class="text-primary"></span> </a></div>
           </div>
 
           <div class="col-12 col-md-10 d-none d-xl-block">
             <nav class="site-navigation position-relative text-right" role="navigation">
-
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="{{ url_for('main_controller.home') }}" class="nav-link">Home</a></li>
+                
                 <li class="has-children">
-                  <a href="services.html" class="nav-link">Services</a>
+                  <a href="{{ url_for('main_controller.services') }}" class="nav-link">Services</a>
                   <ul class="dropdown">
-                    <li><a href="{{ url_for('nurse_request') }}" class="nav-link">Nurse Request</a></li>
-                    <li><a href="{{ url_for('doctor_checkup') }}" class="nav-link">Doctor Checkup</a></li>
-                    <li><a href="{{ url_for('need_company') }}" class="nav-link">Need Company?</a></li>
-                    <li><a href="{{ url_for('car_washing') }}" class="nav-link">Car Washing</a></li>
+                    <li><a href="{{ url_for('main_controller.nurse_request') }}" class="nav-link">Nurse Request</a></li>
+                    <li><a href="{{ url_for('main_controller.doctor_checkup') }}" class="nav-link">Doctor Checkup</a></li>
+                    <li><a href="{{ url_for('main_controller.need_company') }}" class="nav-link">Need Company?</a></li>
+                    <li><a href="{{ url_for('main_controller.car_washing') }}" class="nav-link">Car Washing</a></li>
                     <li class="has-children">
                       <a href="#">More Links</a>
                       <ul class="dropdown">
@@ -71,83 +78,122 @@
                   </ul>
                 </li>
 
-                <!--<li><a href="about.html" class="nav-link">About</a></li>-->
-                <li><a href="contact.html" class="active nav-link">Contact</a></li>
+                <li><a href="{{ url_for('main_controller.contact') }}" class="active nav-link">Contact</a></li>
 
-                <li class="social"><a href="#contact-section" class="nav-link"><span class="icon-facebook"></span></a></li>
-                <li class="social"><a href="#contact-section" class="nav-link"><span class="icon-twitter"></span></a></li>
-                <li class="social"><a href="#contact-section" class="nav-link"><span class="icon-linkedin"></span></a></li>
-                <li class="ml-3"> <a href="registration.html" class="btn btn-primary text-white py-2 px-4">Register</a></li>
-                <li class="ml-3"><a href="user_profile.html" class="btn btn-outline-primary py-2 px-4">Profile</a></li>
+                <li class="social"><a href="{{ url_for('main_controller.contact') }}" class="nav-link"><span class="icon-facebook"></span></a></li>
+                <li class="social"><a href="{{ url_for('main_controller.contact') }}" class="nav-link"><span class="icon-twitter"></span></a></li>
+                <li class="social"><a href="{{ url_for('main_controller.contact') }}" class="nav-link"><span class="icon-linkedin"></span></a></li>
+                
+                <li class="ml-3"> <a href="{{ url_for('main_controller.registration') }}" class="btn btn-primary text-white py-2 px-4">Register</a></li>
+                <li class="ml-3"><a href="{{ url_for('main_controller.user_profile') }}" class="btn btn-outline-primary py-2 px-4">Profile</a></li>
               </ul>
             </nav>
           </div>
-
-
           <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle float-right"><span class="icon-menu h3 text-white"></span></a></div>
-
         </div>
       </div>
-
     </header>
-
-
-    <!-- MAIN -->
-
 
     <div class="slide-item overlay" style="background-image: url('{{ url_for('static', filename='images/slider-2.jpg') }}')">
       <div class="container">
         <div class="row justify-content-center text-center">
           <div class="col-lg-6 align-self-center">
-            <h1 class="heading mb-3">Contact us</h1>
-            <p class="lead text-white"></p>
+            <h1 class="heading mb-3">Contact Us</h1>
+            <p class="lead text-white">We are here to help. Send us a message.</p>
           </div>
         </div>
       </div>  
     </div>
 
-
-
-
     <div class="site-section">
       <div class="container">
-        <div class="row">
-          <div class="col-lg-12 mb-5">
-            <div class="row justify-content-center text-center">
-
-              <div class="col-md-4">
-                <div class="p-4 bg-white shadow-sm text-center mb-4 contact-box">
-                  <span class="icon-phone h1 d-block mb-3 text-primary"></span>
-                  <h4 class="text-black">Phone Number</h4>
-                  <p> 0112 3456 789</p>
-                </div>
-              </div>
-          
-                <div class="col-md-4">
-                <div class="p-4 bg-white shadow-sm text-center mb-4 contact-box">
-                  <span class="icon-envelope h1 d-block mb-3 text-primary"></span>
-                  <h4 class="text-black">Email Address</h4>
-                  <p>elderlycare@example.com</p>
-                </div>
-              </div>
-          
-              <div class="col-md-4">
-                <div class="p-4 bg-white shadow-sm text-center mb-4 contact-box">
-                  <span class="icon-location-arrow h1 d-block mb-3 text-primary"></span>
-                  <h4 class="text-black">Address</h4>
-                  <p>Cairo, Egypt</p>
-                </div>
-              </div>
-          
+        
+        <div class="row mb-5 justify-content-center">
+          <div class="col-md-4 text-center">
+            <div class="p-4 bg-white shadow-sm contact-box h-100">
+              <span class="icon-phone h1 d-block mb-3 text-primary"></span>
+              <h4 class="text-black">Phone Number</h4>
+              <p>+20 112 3456 789</p>
             </div>
           </div>
-          
-
+          <div class="col-md-4 text-center">
+            <div class="p-4 bg-white shadow-sm contact-box h-100">
+              <span class="icon-envelope h1 d-block mb-3 text-primary"></span>
+              <h4 class="text-black">Email Address</h4>
+              <p>elderlycare@example.com</p>
+            </div>
+          </div>
+          <div class="col-md-4 text-center">
+            <div class="p-4 bg-white shadow-sm contact-box h-100">
+              <span class="icon-location-arrow h1 d-block mb-3 text-primary"></span>
+              <h4 class="text-black">Address</h4>
+              <p>Cairo, Egypt</p>
+            </div>
           </div>
         </div>
+
+        <div class="row justify-content-center">
+          <div class="col-lg-10">
+            <div class="contact-form-container">
+              
+              {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                  {% for category, message in messages %}
+                    <div class="alert alert-{{ category if category != 'message' else 'info' }} alert-dismissible fade show" role="alert">
+                      {{ message }}
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                  {% endfor %}
+                {% endif %}
+              {% endwith %}
+
+              <h2 class="h3 text-black mb-4">Send us a Message</h2>
+              
+              <form action="{{ url_for('main_controller.contact') }}" method="post">
+                <div class="row form-group">
+                  <div class="col-md-6 mb-3 mb-md-0">
+                    <label class="text-black" for="fname">First Name</label>
+                    <input type="text" id="fname" name="fname" class="form-control" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="text-black" for="lname">Last Name</label>
+                    <input type="text" id="lname" name="lname" class="form-control" required>
+                  </div>
+                </div>
+
+                <div class="row form-group">
+                  <div class="col-md-12">
+                    <label class="text-black" for="email">Email</label>
+                    <input type="email" id="email" name="email" class="form-control" required>
+                  </div>
+                </div>
+
+                <div class="row form-group">
+                  <div class="col-md-12">
+                    <label class="text-black" for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" class="form-control">
+                  </div>
+                </div>
+
+                <div class="row form-group">
+                  <div class="col-md-12">
+                    <label class="text-black" for="message">Message</label>
+                    <textarea name="message" id="message" cols="30" rows="7" class="form-control" placeholder="Write your notes or questions here..." required></textarea>
+                  </div>
+                </div>
+
+                <div class="row form-group">
+                  <div class="col-md-12">
+                    <button type="submit" class="btn btn-primary text-white py-3 px-5">Send Message</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
-
 
     <div class="site-footer bg-light">
       <div class="container">
@@ -167,7 +213,16 @@
               <div class="col-lg-4">
                 <h2 class="footer-heading mb-4">Quick Links</h2>
                 <ul class="list-unstyled">
-                  <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
+                  <li><a href="{{ url_for('main_controller.home') }}">Home</a></li>
+                  <li><a href="{{ url_for('main_controller.services') }}">Services</a></li>
+                  <li><a href="{{ url_for('main_controller.contact') }}">Contact Us</a></li>
+                </ul>
+              </div>
+              <div class="col-lg-4">
+                <h2 class="footer-heading mb-4">Services</h2>
+                 <ul class="list-unstyled">
+                  <li><a href="{{ url_for('main_controller.nurse_request') }}">Nurse Request</a></li>
+                  <li><a href="{{ url_for('main_controller.doctor_checkup') }}">Doctor Checkup</a></li>
                 </ul>
               </div>
             </div>
@@ -177,19 +232,26 @@
           <div class="col-md-12">
             <div class="border-top pt-5">
               <p class="copyright"><small>
-                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
-                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></small></p>
-  
-              </div>
+                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Elderly Care
+              </small></p>
             </div>
-  
           </div>
         </div>
       </div>
     </div>
   
   </div>
+
+  <script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/jquery-migrate-3.0.1.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/jquery-ui.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/owl.carousel.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/jquery.fancybox.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/jquery.sticky.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/aos.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
   
   </body>
   </html>
