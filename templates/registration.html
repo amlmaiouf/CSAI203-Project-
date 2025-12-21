@@ -19,7 +19,6 @@
   <link rel="stylesheet" href="css/style.css">
 
   <style>
-    /* Tab styles */
     .tab-button {
       flex: 1;
       text-align: center;
@@ -50,16 +49,9 @@
     <div class="container">
       <div class="row align-items-center">
         <div class="col-6 col-xl-2">
-          <div class="mb-0 site-logo"><a href="index.html" class="mb-0">Elderly Care</a></div>
-        </div>
-        <div class="col-12 col-md-10 d-none d-xl-block">
-          <nav class="site-navigation position-relative text-right" role="navigation">
-            <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-              <li><a href="index.html" class="nav-link">Home</a></li>
-              <li><a href="contact.html" class="nav-link">Contact</a></li>
-              <li class="ml-3"><a href="registration.html" class="btn btn-primary text-white py-2 px-4">Register</a></li>
-            </ul>
-          </nav>
+          <div class="mb-0 site-logo">
+            <a href="index.html" class="mb-0">Elderly Care</a>
+          </div>
         </div>
       </div>
     </div>
@@ -78,42 +70,70 @@
               <div class="tab-button" id="signup-tab">Sign Up</div>
             </div>
 
-            <!-- Sign In Form -->
+            <!-- ✅ SIGN IN -->
             <div class="tab-content active" id="signin-form">
               <form method="POST" action="/login">
+
                 <div class="mb-3">
-                  <label for="signinEmail" class="form-label">Email Address</label>
-                  <input type="email" class="form-control" id="signinEmail" name="email" placeholder="Enter email address" required>
+                  <label class="form-label">Username</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="username"
+                    placeholder="Enter username"
+                    required>
                 </div>
+
                 <div class="mb-3">
-                  <label for="signinPassword" class="form-label">Password</label>
-                  <input type="password" class="form-control" id="signinPassword" name="password" placeholder="Enter password" required>
+                  <label class="form-label">Password</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    name="password"
+                    placeholder="Enter password"
+                    required>
                 </div>
+
                 <div class="d-grid">
                   <button type="submit" class="btn btn-primary">Sign In</button>
                 </div>
               </form>
             </div>
 
-            <!-- Sign Up Form -->
+            <!-- ✅ SIGN UP -->
             <div class="tab-content" id="signup-form">
-              <form method="POST" action="/register">
+              <form method="POST" action="/signup">
+
                 <div class="mb-3">
-                  <label for="signupName" class="form-label">Name</label>
-                  <input type="text" class="form-control" id="signupName" name="name" placeholder="Enter your name" required>
+                  <label class="form-label">Username</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="username"
+                    placeholder="Choose a username"
+                    required>
                 </div>
+
                 <div class="mb-3">
-                  <label for="signupAge" class="form-label">Age</label>
-                  <input type="number" class="form-control" id="signupAge" name="age" placeholder="Enter your age" required>
+                  <label class="form-label">Email</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    name="email"
+                    placeholder="Enter email"
+                    required>
                 </div>
+
                 <div class="mb-3">
-                  <label for="signupEmail" class="form-label">Email Address</label>
-                  <input type="email" class="form-control" id="signupEmail" name="email" placeholder="Enter email address" required>
+                  <label class="form-label">Password</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    name="password"
+                    placeholder="Create password"
+                    required>
                 </div>
-                <div class="mb-3">
-                  <label for="signupPassword" class="form-label">Password</label>
-                  <input type="password" class="form-control" id="signupPassword" name="password" placeholder="Password" required>
-                </div>
+
                 <div class="d-grid">
                   <button type="submit" class="btn btn-primary">Sign Up</button>
                 </div>
@@ -129,19 +149,13 @@
   <!-- Footer -->
   <div class="site-footer bg-light">
     <div class="container">
-      <div class="row">
-        <div class="col-lg-4">
-          <h2 class="footer-heading mb-4">About</h2>
-          <p>We are a group dedicating ourselves to helping the elderly community with ease.</p>
-        </div>
-      </div>
+      <p>We are a group dedicating ourselves to helping the elderly community with ease.</p>
     </div>
   </div>
 
 </div>
 
 <script>
-  // Tab switching
   const signinTab = document.getElementById('signin-tab');
   const signupTab = document.getElementById('signup-tab');
   const signinForm = document.getElementById('signin-form');

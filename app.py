@@ -1,17 +1,23 @@
+import os
+import sys
+
+# ✅ ADD PROJECT ROOT TO PYTHON PATH
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(BASE_DIR)
+
 from flask import Flask
-from controllers.auth_controller import auth_bp
-from controllers.profile_controller import profile_bp
-from models.user_model import init_db
+from config import Config
+from routes.auth_routes import auth_bp
 
-app = Flask(__name__)
-app.secret_key = "your_secret_key_here"
+def create_app():
+    app = Flask(__name__)
+    app.config.from_object(Config)
 
-# Initialize DB
-init_db()
+    app.register_blueprint(auth_bp)
 
-# Register controllers
-app.register_blueprint(auth_bp)
-app.register_blueprint(profile_bp)
+    return app
+
+app = create_app()
 
 if __name__ == "__main__":
     app.run(debug=True)

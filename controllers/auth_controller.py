@@ -1,38 +1,37 @@
-from flask import Blueprint, render_template, request, redirect, session
-from models.user_model import create_user, get_user_by_email, check_password
+from flask import render_template, request, redirect, session, flash
+from models.user import create_user, verify_user, init_db
 
-auth_bp = Blueprint('auth', __name__)
+init_db()
 
-@auth_bp.route("/register", methods=["POST"])
-def register():
-    name = request.form["name"]
-    age = request.form["age"]
-    email = request.form["email"]
-    password = request.form["password"]
+def signup():
+    if request.method == "POST":
+        username = request.form["username"]
+        email = request.form["email"]
+        password = request.form["password"]
 
-    success = create_user(name, age, email, password)
-    if success:
-        return redirect("/login_page")
-    else:
-        return "Email already exists!", 400
+        try:
+            create_user(username, email, password)
+            return redirect("/login")
+        except:
+            flash("Username or email already exists")
 
-@auth_bp.route("/login", methods=["POST"])
+    return render_template("signup.html")
+
 def login():
-    email = request.form["email"]
-    password = request.form["password"]
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
 
-    user = get_user_by_email(email)
-    if user and check_password(user, password):
-        session["user_id"] = user[0]
-        return redirect("/profile")
-    else:
-        return "Invalid credentials!", 400
+        user = verify_user(username, password)
+        if user:
+            session["user_id"] = user[0]
+            session["username"] = user[1]
+            return redirect("/dashboard")
 
-@auth_bp.route("/login_page")
-def login_page():
-    return render_template("registration.html")
+        flash("Invalid credentials")
 
-@auth_bp.route("/logout")
+    return render_template("login.html")
+
 def logout():
     session.clear()
-    return redirect("/login_page")
+    return redirect("/login")
